@@ -1,0 +1,262 @@
+﻿Version=6.3
+NumberOfModules=1
+Module1=Starter
+Build1=Default,com.htetznaing.heartfont
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~'AdMob~\n~AddApplicationText(~\n~<meta-data android:name="com.google.android.gms.version"~\n~  android:value="@integer/google_play_services_version"/>~\n~<activity android:name="com.google.android.gms.ads.AdActivity"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>~\n~~\n~)~\n~'End of AdMob
+IconFile=
+NumberOfFiles=6
+File1=1.png
+File2=2.png
+File3=3.png
+File4=4.png
+File5=Heart.apk
+File6=Myanmar Heart.ttf
+NumberOfLibraries=6
+Library1=core
+Library2=phone
+Library3=icosslideanimation
+Library4=animatetext
+Library5=admob
+Library6=mwadmobinterstitial2 (2)
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Myanmar Heart Font
+	#VersionCode: 1
+	#VersionName: 1.0
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+	#AdditionalRes: D:\Android\android-sdk\extras\google\google-play-services\libproject\google-play-services_lib\res, com.google.android.gms
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals
+Dim t, t1,t2,t3 As Timer
+Dim ad1,ad2 As Timer
+End Sub
+
+Sub Globals
+Dim imv,imv1,imv2,imv3 As ImageView
+Dim iv1,iv2,iv3,iv4 As BitmapDrawable
+Dim ani As ICOSSlideAnimation
+Dim ph As Phone
+Dim atx As AnimateText
+Dim b1,b2,b3 As Button
+Dim mm As Typeface : mm = mm.LoadFromAssets("Myanmar Heart.ttf")
+Dim lb,lfoot As Label
+Dim Banner As AdView
+Dim Interstitial As mwAdmobInterstitial
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If ph.SdkVersion > 19 Then
+		Banner.Initialize("Banner","ca-app-pub-4173348573252986/5809490158")
+		Banner.LoadAd
+		Activity.AddView(Banner,0%x,80%y,100%x,50dip)
+		
+		Interstitial.Initialize("Interstitial","ca-app-pub-4173348573252986/8762956556")
+		Interstitial.LoadAd
+		
+		ad1.Initialize("ad1",100)
+		ad1.Enabled = False
+		ad2.Initialize("ad2",30000)
+		ad2.Enabled = True
+	End If
+	Activity.Color = Colors.White
+	ph.SetScreenOrientation(1)
+ani.SlideFadeFromRight("ani",600,2000)
+iv1.Initialize(LoadBitmap(File.DirAssets,"1.png"))
+iv2.Initialize(LoadBitmap(File.DirAssets,"2.png"))
+iv3.Initialize(LoadBitmap(File.DirAssets,"3.png"))
+iv4.Initialize(LoadBitmap(File.DirAssets,"4.png"))
+
+t.Initialize("t",7000)
+t1.Initialize("t1",7000)
+t2.Initialize("t2",7000)
+t3.Initialize("t3",7000)
+t1.Enabled = True
+t2.Enabled = False
+t3.Enabled = False
+
+imv.Initialize("imv")
+imv.Background = iv1
+Activity.AddView(imv,0%x,0%x,100%x,170dip)
+
+imv1.Initialize("imv1")
+imv1.Background = iv2
+
+imv2.Initialize("imv2")
+imv2.Background = iv3
+
+imv3.Initialize("imv3")
+imv3.Background = iv4
+
+lb.Initialize("")
+lb.Typeface = mm
+lb.TextColor = Colors.Black
+Activity.AddView(lb,0%x,(imv.Top+imv.Height)+3%y,100%x,5%y)
+lb.Gravity = Gravity.CENTER
+lb.TextSize = 17
+atx.initialize("atx",Me,150)
+atx.Run( "ျမန္မာ ♡ အသည္းပုံ ♡ စာလုံးပုံစံျဖစ္ပါသည္။",lb)
+
+b1.Initialize("b1")
+Dim b1bg As ColorDrawable
+b1bg.Initialize(Colors.Black,10)
+b1.Text = "Install"
+b1.Background = b1bg
+Activity.AddView(b1,20%x,(lb.Top+lb.Height)+1%y,60%x,50dip)
+
+b2.Initialize("b2")
+b2.Background = b1bg
+b2.Text = "Change Font"
+Activity.AddView(b2,20%x,(b1.Top+b1.Height)+2%y,60%x,50dip)
+
+b3.Initialize("b3")
+b3.Text = "About App"
+b3.Background = b1bg
+Activity.AddView(b3,20%x,(b2.Top+b2.Height)+2%y,60%x,50dip)
+
+lfoot.Initialize("ft")
+lfoot.Text = "Developed By Khun Htetz Naing"
+lfoot.TextColor = Colors.Magenta
+lfoot.Gravity = Gravity.CENTER
+Activity.AddView(lfoot,0%x,95%y,100%x,5%y)
+End Sub
+
+Sub ft_Click
+	Dim aa As PhoneIntents
+	StartActivity(aa.OpenBrowser("https://www.facebook.com/Khun.Htetz.Naing"))
+End Sub
+
+Sub t_Tick
+	imv.RemoveView
+	Activity.AddView(imv,0%x,0%x,100%x,170dip)
+	ani.StartAnim(imv)
+	t.Enabled = False
+	t1.Enabled = True
+End Sub
+
+Sub t1_Tick
+	imv1.RemoveView
+	Activity.AddView(imv1,0%x,0%y,100%x,170dip)
+	ani.StartAnim(imv1)
+	t1.Enabled = False
+	t2.Enabled = True
+End Sub
+
+Sub t2_Tick
+	imv2.RemoveView
+	Activity.AddView(imv2,0%x,0%y,100%x,170dip)
+	ani.StartAnim(imv2)
+	t2.Enabled = False
+	t3.Enabled = True
+End Sub
+
+Sub t3_Tick
+	imv3.RemoveView
+	Activity.AddView(imv3,0%x,0%y,100%x,170dip)
+	ani.StartAnim(imv3)
+	t3.Enabled = False
+	t.Enabled = True
+End Sub
+
+Sub imv_Click
+	If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+	Dim i As PhoneIntents
+	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.cocmmtool"))
+End Sub
+
+Sub imv1_Click
+		If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+	Dim i As PhoneIntents
+	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.mmallsimregistration"))
+End Sub
+
+Sub imv2_Click
+		If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+	Dim i As PhoneIntents
+	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.smsunlocker"))
+End Sub
+
+Sub imv3_Click
+		If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+	Dim i As PhoneIntents
+	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.giftappmaker"))
+End Sub
+
+Sub b1_Click
+		If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+Msgbox("1. Install Font App" & CRLF & "2. After Click Change Font and Choose your Font!","Attention!")
+	File.Copy(File.DirAssets,"Heart.apk",File.DirRootExternal,"Heart.apk")
+	Dim i As Intent
+    i.Initialize(i.ACTION_VIEW,"file:///"&File.DirRootExternal&"/Heart.apk")
+	i.SetType("application/vnd.android.package-archive")
+	StartActivity(i)
+End Sub
+
+Sub b2_Click
+		If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+		ToastMessageShow("1. Click Font Style Or Font > " &CRLF& "2. Choose Myanmar Heart(iFont)",True)
+	Dim abc As Intent
+	abc.Initialize("android.settings.DISPLAY_SETTINGS","")
+	StartActivity(abc)
+End Sub
+
+Sub b3_Click
+		If ph.SdkVersion > 19 Then
+		ad1.Enabled = True
+	End If
+	Msgbox("App Name : Myanmar Heart Font" & CRLF & "Version : 1.0" & CRLF & "Dev  By : Khun Htetz Naing" & CRLF&CRLF& "Special Thank to Font Dev!","About App")
+End Sub
+
+Sub Activity_Resume
+If File.Exists(File.DirRootExternal,"Heart.apk") = True Then
+	File.Delete(File.DirRootExternal,"Heart.apk")
+End If
+End Sub
+
+Sub ad1_Tick
+	If ph.SdkVersion > 19 Then
+	If Interstitial.Status = Interstitial.Status_AdReadyToShow Then
+		Interstitial.Show
+	End If
+	
+	If Interstitial.Status = Interstitial.Status_Dismissed Then
+		Interstitial.LoadAd
+	End If
+	End If
+	ad1.Enabled = False
+End Sub
+
+Sub ad2_Tick
+		If ph.SdkVersion > 19 Then
+	If Interstitial.Status = Interstitial.Status_AdReadyToShow Then
+		Interstitial.Show
+	End If
+	
+	If Interstitial.Status = Interstitial.Status_Dismissed Then
+		Interstitial.LoadAd
+	End If
+	End If
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
