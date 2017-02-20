@@ -1,262 +1,333 @@
-﻿Version=6.3
-NumberOfModules=1
-Module1=Starter
-Build1=Default,com.htetznaing.heartfont
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~'AdMob~\n~AddApplicationText(~\n~<meta-data android:name="com.google.android.gms.version"~\n~  android:value="@integer/google_play_services_version"/>~\n~<activity android:name="com.google.android.gms.ads.AdActivity"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>~\n~~\n~)~\n~'End of AdMob
+﻿Version=6.5
+NumberOfModules=10
+Module1=Main2
+Module2=Samsung
+Module3=Oppo
+Module4=Huawei
+Module5=Vivo
+Module6=SlideMenu
+Module7=Tutorial
+Module8=About
+Module9=Xiaomi
+Module10=Other
+Build1=Default,com.htetznaing.mmheartfont2
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"~\n~	android:exported="true"/>~\n~         <action android:name="android.intent.action.MAIN" />~\n~         <category android:name="android.intent.category.LAUNCHER" />)~\n~	~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~~\n~'End of default text.~\n~'************ Google Play Services Base ************~\n~AddApplicationText(~\n~   <activity android:name="com.google.android.gms.common.api.GoogleApiActivity"~\n~  android:theme="@android:style/Theme.Translucent.NoTitleBar"~\n~  android:exported="false"/>~\n~    <meta-data~\n~  android:name="com.google.android.gms.version"~\n~  android:value="@integer/google_play_services_version" />~\n~)~\n~~\n~'************ Google Play Services Base (end) ************~\n~~\n~'************ Firebase Ads ************~\n~AddApplicationText(~\n~  <activity~\n~  android:name="com.google.android.gms.ads.AdActivity"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"~\n~  android:theme="@android:style/Theme.Translucent" />~\n~  <activity android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"~\n~  android:theme="@style/Theme.IAPTheme"/>~\n~)~\n~'************ Firebase Ads (end) ************
 IconFile=
-NumberOfFiles=6
-File1=1.png
-File2=2.png
-File3=3.png
-File4=4.png
-File5=Heart.apk
-File6=Myanmar Heart.ttf
-NumberOfLibraries=6
+NumberOfFiles=19
+File1=about.png
+File2=bg.jpg
+File3=fb.png
+File4=huawei.jpg
+File5=icon.png
+File6=menu.png
+File7=moreapp.png
+File8=myanmar heart.ttf
+File9=MyanmarHeart.txj
+File10=MyanmarHeartFont(iFont).apk
+File11=MyanmarHeartFont.hwt
+File12=MyanmarHeartFont.mtz
+File13=open.png
+File14=oppo.png
+File15=other.png
+File16=samsung.png
+File17=share.png
+File18=vivo.png
+File19=xiaomi.png
+NumberOfLibraries=10
 Library1=core
 Library2=phone
-Library3=icosslideanimation
-Library4=animatetext
-Library5=admob
-Library6=mwadmobinterstitial2 (2)
+Library3=animatetext
+Library4=firebaseadmob
+Library5=mlfiles
+Library6=animation
+Library7=webviewsettings
+Library8=stringutils
+Library9=clipboard
+Library10=httputils2
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Myanmar Heart Font
-	#VersionCode: 1
-	#VersionName: 1.0
+	#VersionCode: 3
+	#VersionName: 1.1
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
-	#AdditionalRes: D:\Android\android-sdk\extras\google\google-play-services\libproject\google-play-services_lib\res, com.google.android.gms
 #End Region
 
 #Region  Activity Attributes 
-	#FullScreen: True
-	#IncludeTitle: False
+	#FullScreen: False
+	#IncludeTitle: false
 #End Region
 
 Sub Process_Globals
-Dim t, t1,t2,t3 As Timer
 Dim ad1,ad2 As Timer
 End Sub
 
 Sub Globals
-Dim imv,imv1,imv2,imv3 As ImageView
-Dim iv1,iv2,iv3,iv4 As BitmapDrawable
-Dim ani As ICOSSlideAnimation
 Dim ph As Phone
 Dim atx As AnimateText
-Dim b1,b2,b3 As Button
+Dim b1,b2,b3,b4 As Label
 Dim mm As Typeface : mm = mm.LoadFromAssets("Myanmar Heart.ttf")
 Dim lb,lfoot As Label
 Dim Banner As AdView
-Dim Interstitial As mwAdmobInterstitial
+Dim Interstitial As InterstitialAd
+Dim imv As ImageView
+Dim ml As MLfiles
+
+Dim sm As SlideMenu
+Dim tlb As Label
+Dim menu,share As Button
+Dim sbg,mbg As BitmapDrawable
+	Dim copy As BClipboard
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
-	If ph.SdkVersion > 19 Then
-		Banner.Initialize("Banner","ca-app-pub-4173348573252986/5809490158")
-		Banner.LoadAd
-		Activity.AddView(Banner,0%x,80%y,100%x,50dip)
-		
-		Interstitial.Initialize("Interstitial","ca-app-pub-4173348573252986/8762956556")
-		Interstitial.LoadAd
-		
-		ad1.Initialize("ad1",100)
-		ad1.Enabled = False
-		ad2.Initialize("ad2",30000)
-		ad2.Enabled = True
-	End If
 	Activity.Color = Colors.White
 	ph.SetScreenOrientation(1)
-ani.SlideFadeFromRight("ani",600,2000)
-iv1.Initialize(LoadBitmap(File.DirAssets,"1.png"))
-iv2.Initialize(LoadBitmap(File.DirAssets,"2.png"))
-iv3.Initialize(LoadBitmap(File.DirAssets,"3.png"))
-iv4.Initialize(LoadBitmap(File.DirAssets,"4.png"))
-
-t.Initialize("t",7000)
-t1.Initialize("t1",7000)
-t2.Initialize("t2",7000)
-t3.Initialize("t3",7000)
-t1.Enabled = True
-t2.Enabled = False
-t3.Enabled = False
-
-imv.Initialize("imv")
-imv.Background = iv1
-Activity.AddView(imv,0%x,0%x,100%x,170dip)
-
-imv1.Initialize("imv1")
-imv1.Background = iv2
-
-imv2.Initialize("imv2")
-imv2.Background = iv3
-
-imv3.Initialize("imv3")
-imv3.Background = iv4
+	
+imv.Initialize("")
+imv.Bitmap = LoadBitmap(File.DirAssets,"icon.png")
+imv.Gravity = Gravity.FILL
+Activity.AddView(imv,50%x - 40dip,55dip+1%y,85dip,100dip)
 
 lb.Initialize("")
 lb.Typeface = mm
 lb.TextColor = Colors.Black
-Activity.AddView(lb,0%x,(imv.Top+imv.Height)+3%y,100%x,5%y)
+Activity.AddView(lb,0%x,(imv.Height+imv.Top),100%x,10%y)
 lb.Gravity = Gravity.CENTER
 lb.TextSize = 17
-atx.initialize("atx",Me,150)
-atx.Run( "ျမန္မာ ♡ အသည္းပုံ ♡ စာလုံးပုံစံျဖစ္ပါသည္။",lb)
+atx.initialize("atx",Me,200)
+atx.Run( " ♡ ငါနင့္ကိုခ်စ္တယ္ ♡" &CRLF& "I Love You <3" ,lb)
+atx.Endable = True
 
 b1.Initialize("b1")
 Dim b1bg As ColorDrawable
 b1bg.Initialize(Colors.Black,10)
-b1.Text = "Install"
-b1.Background = b1bg
+	b1.Text = "Install"
+	b1.Background = b1bg
+	b1.Gravity = Gravity.CENTER
+	b1.Textcolor = Colors.White
+	b1.TextSize = 17
 Activity.AddView(b1,20%x,(lb.Top+lb.Height)+1%y,60%x,50dip)
 
 b2.Initialize("b2")
 b2.Background = b1bg
-b2.Text = "Change Font"
+	b2.Text = "Tutorial"
+	b2.Gravity = Gravity.CENTER
+	b2.Textcolor = Colors.White
+	b2.TextSize = 17
 Activity.AddView(b2,20%x,(b1.Top+b1.Height)+2%y,60%x,50dip)
 
-b3.Initialize("b3")
-b3.Text = "About App"
-b3.Background = b1bg
+	b3.Initialize("b3")
+	b3.Text = "About"
+	b3.Background = b1bg
+	b3.Gravity = Gravity.CENTER
+	b3.Textcolor = Colors.White
+	b3.TextSize = 17
 Activity.AddView(b3,20%x,(b2.Top+b2.Height)+2%y,60%x,50dip)
 
+	b4.Initialize("b4")
+	b4.Text = "More App"
+	b4.Background = b1bg
+	b4.Gravity = Gravity.CENTER
+	b4.Textcolor = Colors.White
+	b4.TextSize = 17
+Activity.AddView(b4,20%x,(b3.Top+b3.Height)+2%y,60%x,50dip)
+
 lfoot.Initialize("ft")
-lfoot.Text = "Developed By Khun Htetz Naing"
+lfoot.Text = "Powered By Myanmar Android Apps"
 lfoot.TextColor = Colors.Magenta
 lfoot.Gravity = Gravity.CENTER
-Activity.AddView(lfoot,0%x,95%y,100%x,5%y)
+Activity.AddView(lfoot,0%x,(b4.Height+b4.Top)+5%y,100%x,5%y)
+
+	'NEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+	tlb.Initialize("tlb")
+	tlb.Text = "Myanmar Heart Font"
+	tlb.Color = Colors.RGB(33,150,243)
+	tlb.TextColor = Colors.White
+	tlb.TextSize = 25
+	tlb.Typeface = Typeface.DEFAULT_BOLD
+	
+	tlb.Gravity = Gravity.CENTER
+	Activity.AddView(tlb,0%x,0%y,100%x,55dip)
+	
+	sm.Initialize(Activity, Me, "SlideMenu",0,70%x)
+	sm.AddItem("Samsung",LoadBitmap(File.DirAssets,"samsung.png"),1)
+	sm.AddItem("Oppo",LoadBitmap(File.DirAssets,"oppo.png"),2)
+	sm.AddItem("Vivo",LoadBitmap(File.DirAssets,"vivo.png"),3)
+	sm.AddItem("Huawei",LoadBitmap(File.DirAssets,"huawei.jpg"),4)
+	sm.AddItem("Xiaomi",LoadBitmap(File.DirAssets,"xiaomi.png"),5)
+	sm.AddItem("Other [#Root]",LoadBitmap(File.DirAssets,"other.png"),6)
+	sm.AddItem("Share App",LoadBitmap(File.DirAssets,"share.png"),7)
+	sm.AddItem("More App",LoadBitmap(File.DirAssets,"moreapp.png"),8)
+	sm.AddItem("About",LoadBitmap(File.DirAssets,"about.png"),9)
+	
+	mbg.Initialize(LoadBitmap(File.DirAssets,"menu.png"))
+	menu.Initialize("menu")
+	menu.Background = mbg
+	menu.Gravity = Gravity.CENTER
+	Activity.AddView(menu,10dip,12.5dip,30dip,30dip)
+	
+	sbg.Initialize(LoadBitmap(File.DirAssets,"share.png"))
+	share.Initialize("share")
+	share.Background = sbg
+	share.Gravity = Gravity.CENTER
+	Activity.AddView(share,100%x - 40dip,12.5dip,30dip,30dip)
+	
+	Banner.Initialize("Banner","ca-app-pub-4173348573252986/1553645756")
+	Banner.LoadAd
+	Activity.AddView(Banner,0%x,100%y - 50dip,100%x,50dip)
+		
+	Interstitial.Initialize("Interstitial","ca-app-pub-4173348573252986/4507112156")
+	Interstitial.LoadAd
+		
+	ad1.Initialize("ad1",100)
+	ad1.Enabled = False
+	ad2.Initialize("ad2",60000)
+	ad2.Enabled = True
 End Sub
 
 Sub ft_Click
-	Dim aa As PhoneIntents
-	StartActivity(aa.OpenBrowser("https://www.facebook.com/Khun.Htetz.Naing"))
-End Sub
-
-Sub t_Tick
-	imv.RemoveView
-	Activity.AddView(imv,0%x,0%x,100%x,170dip)
-	ani.StartAnim(imv)
-	t.Enabled = False
-	t1.Enabled = True
-End Sub
-
-Sub t1_Tick
-	imv1.RemoveView
-	Activity.AddView(imv1,0%x,0%y,100%x,170dip)
-	ani.StartAnim(imv1)
-	t1.Enabled = False
-	t2.Enabled = True
-End Sub
-
-Sub t2_Tick
-	imv2.RemoveView
-	Activity.AddView(imv2,0%x,0%y,100%x,170dip)
-	ani.StartAnim(imv2)
-	t2.Enabled = False
-	t3.Enabled = True
-End Sub
-
-Sub t3_Tick
-	imv3.RemoveView
-	Activity.AddView(imv3,0%x,0%y,100%x,170dip)
-	ani.StartAnim(imv3)
-	t3.Enabled = False
-	t.Enabled = True
-End Sub
-
-Sub imv_Click
-	If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-	Dim i As PhoneIntents
-	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.cocmmtool"))
-End Sub
-
-Sub imv1_Click
-		If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-	Dim i As PhoneIntents
-	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.mmallsimregistration"))
-End Sub
-
-Sub imv2_Click
-		If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-	Dim i As PhoneIntents
-	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.smsunlocker"))
-End Sub
-
-Sub imv3_Click
-		If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-	Dim i As PhoneIntents
-	StartActivity(i.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.giftappmaker"))
+	Try
+ 
+		Dim Facebook As Intent
+ 
+		Facebook.Initialize(Facebook.ACTION_VIEW, "fb://page/627699334104477")
+		StartActivity(Facebook)
+ 
+	Catch
+ 
+		Dim i As Intent
+		i.Initialize(i.ACTION_VIEW, "https://m.facebook.com/MmFreeAndroidApps")
+ 
+		StartActivity(i)
+ 
+	End Try
 End Sub
 
 Sub b1_Click
-		If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-Msgbox("1. Install Font App" & CRLF & "2. After Click Change Font and Choose your Font!","Attention!")
-	File.Copy(File.DirAssets,"Heart.apk",File.DirRootExternal,"Heart.apk")
-	Dim i As Intent
-    i.Initialize(i.ACTION_VIEW,"file:///"&File.DirRootExternal&"/Heart.apk")
-	i.SetType("application/vnd.android.package-archive")
-	StartActivity(i)
+StartActivity(Main2)
 End Sub
 
 Sub b2_Click
-		If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-		ToastMessageShow("1. Click Font Style Or Font > " &CRLF& "2. Choose Myanmar Heart(iFont)",True)
-	Dim abc As Intent
-	abc.Initialize("android.settings.DISPLAY_SETTINGS","")
-	StartActivity(abc)
+StartActivity(Tutorial)
 End Sub
 
 Sub b3_Click
-		If ph.SdkVersion > 19 Then
-		ad1.Enabled = True
-	End If
-	Msgbox("App Name : Myanmar Heart Font" & CRLF & "Version : 1.0" & CRLF & "Dev  By : Khun Htetz Naing" & CRLF&CRLF& "Special Thank to Font Dev!","About App")
+StartActivity(About)
+End Sub
+
+Sub b4_Click
+	Dim p As PhoneIntents
+	StartActivity(p.OpenBrowser("http://www.htetznaing.com"))
 End Sub
 
 Sub Activity_Resume
-If File.Exists(File.DirRootExternal,"Heart.apk") = True Then
-	File.Delete(File.DirRootExternal,"Heart.apk")
-End If
+
 End Sub
 
 Sub ad1_Tick
-	If ph.SdkVersion > 19 Then
-	If Interstitial.Status = Interstitial.Status_AdReadyToShow Then
-		Interstitial.Show
-	End If
-	
-	If Interstitial.Status = Interstitial.Status_Dismissed Then
-		Interstitial.LoadAd
-	End If
-	End If
-	ad1.Enabled = False
+	If Interstitial.Ready Then Interstitial.Show
+		ad1.Enabled = False
+End Sub
+
+Sub Interstitial_AdClosed
+	Interstitial.LoadAd
 End Sub
 
 Sub ad2_Tick
-		If ph.SdkVersion > 19 Then
-	If Interstitial.Status = Interstitial.Status_AdReadyToShow Then
-		Interstitial.Show
-	End If
-	
-	If Interstitial.Status = Interstitial.Status_Dismissed Then
-		Interstitial.LoadAd
-	End If
-	End If
+If Interstitial.Ready Then Interstitial.Show
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
 
+End Sub
+
+
+Sub Activity_KeyPress (KeyCode As Int) As Boolean
+	ml.rmrf(File.DirRootExternal & "/MyanmarAndroidApps")
+	Dim Answ As Int
+	If KeyCode = KeyCodes.KEYCODE_BACK Then
+		Answ = Msgbox2("If you want to get new updates on  Facebook? Please Like " &CRLF & "Myanmar Android Apps Page!","Attention!", "Yes", "", "No",LoadBitmap(File.DirAssets,"fb.png" ))
+		If Answ = DialogResponse.NEGATIVE Then
+
+			If ph.SdkVersion > 19 Then
+				ad1.Enabled = True
+			End If
+			Return False
+		End If
+	End If
+	If Answ = DialogResponse.POSITIVE Then
+		If ph.SdkVersion > 19 Then
+			ad1.Enabled = True
+		End If
+		Try
+ 
+			Dim Facebook As Intent
+ 
+			Facebook.Initialize(Facebook.ACTION_VIEW, "fb://page/627699334104477")
+			StartActivity(Facebook)
+ 
+		Catch
+ 
+			Dim i As Intent
+			i.Initialize(i.ACTION_VIEW, "https://m.facebook.com/MmFreeAndroidApps")
+ 
+			StartActivity(i)
+ 
+		End Try
+		Return False
+	End If
+End Sub
+
+
+Sub SlideMenu_Click(Item As Object)
+	sm.Hide
+
+	Select Item
+		Case 1 :
+			StartActivity(Samsung)
+		Case 2 :
+			StartActivity(Oppo)
+		Case 3 :
+			StartActivity(Vivo)
+		Case 4 :
+			StartActivity(Huawei)
+		Case 5 :
+			StartActivity(Xiaomi)
+		Case 6 :
+			StartActivity(Other)
+		Case 7 :
+			Dim ShareIt As Intent
+			copy.clrText
+			copy.setText("#Myanmar_Heart_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/myanmar-heart-font/")
+			ShareIt.Initialize (ShareIt.ACTION_SEND,"")
+			ShareIt.SetType ("text/plain")
+			ShareIt.PutExtra ("android.intent.extra.TEXT",copy.getText)
+			ShareIt.PutExtra ("android.intent.extra.SUBJECT","Get Free!!")
+			ShareIt.WrapAsIntentChooser("Share App Via...")
+			StartActivity (ShareIt)
+		Case 8 :
+			Dim p As PhoneIntents
+			StartActivity(p.OpenBrowser("http://www.htetznaing.com"))
+		Case 9 :
+			StartActivity(About)
+	End Select
+End Sub
+
+Sub menu_Click
+	If sm.isVisible Then sm.Hide Else sm.Show
+End Sub
+
+Sub share_Click
+	Dim ShareIt As Intent
+	copy.clrText
+	copy.setText("#Myanmar_Heart_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/myanmar-heart-font/")
+	ShareIt.Initialize (ShareIt.ACTION_SEND,"")
+	ShareIt.SetType ("text/plain")
+	ShareIt.PutExtra ("android.intent.extra.TEXT",copy.getText)
+	ShareIt.PutExtra ("android.intent.extra.SUBJECT","Get Free!!")
+	ShareIt.WrapAsIntentChooser("Share App Via...")
+	StartActivity (ShareIt)
+	
 End Sub
