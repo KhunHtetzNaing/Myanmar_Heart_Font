@@ -48,7 +48,7 @@ Sub Activity_Create(FirstTime As Boolean)
 	lblName.Initialize ("lbname")
 	lblName.Background = bg
 	lblName.Gravity = Gravity.CENTER
-	lblName.Text = "PaOh Music App"
+	lblName.Text = "Myanmar Heart Font"
 	lblName.TextSize = 13
 	lblName.TextColor = Colors.White
 	Activity.AddView (lblName , 100%x / 2 - 90dip , (imvLogo.Height+imvLogo.Top)+10dip , 180dip , 50dip)
@@ -64,7 +64,8 @@ Sub Activity_Create(FirstTime As Boolean)
 	lstOne.SingleLineLayout .Label .Gravity = Gravity.CENTER
 	lstOne.SingleLineLayout .ItemHeight = 40dip
 	lstOne.AddSingleLine2("App Name : Myanmar Heart Font",6)
-	lstOne.AddSingleLine2("Version : 1.0",7)
+	lstOne.AddSingleLine2 ("Font Developer : Unknown   ", 2)
+	lstOne.AddSingleLine2("Version : 1.2",7)
 	lstOne.AddSingleLine2 ("Developed By : Khun Htetz Naing    ", 1)
 	lstOne.AddSingleLine2 ("Website : www.HtetzNaing.com  ", 4)
 	lstOne.AddSingleLine2 ("Facebook : www.fb.com/MmFreeAndroidApps   ", 5)
@@ -103,13 +104,22 @@ Sub Activity_Create(FirstTime As Boolean)
 	menu.Background = mbg
 	menu.Gravity = Gravity.CENTER
 	Activity.AddView(menu,10dip,12.5dip,30dip,30dip)
-'	
-'	tt.Initialize("tt",1)
+	'
+	'	tt.Initialize("tt",1)
 	'	tt.Enabled = False
 	
-	Banner.Initialize("Banner","ca-app-pub-4173348573252986/1553645756")
+	Banner.Initialize2("Banner","ca-app-pub-4173348573252986/1553645756",Banner.SIZE_SMART_BANNER)
+	Dim height As Int
+	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+		'phones
+		If 100%x > 100%y Then height = 32dip Else height = 50dip
+	Else
+		'tablets
+		height = 90dip
+	End If
+	Activity.AddView(Banner, 0dip, 100%y - height, 100%x, height)
 	Banner.LoadAd
-	Activity.AddView(Banner,0%x,100%y - 50dip,100%x,50dip)
+	Log(Banner)
 End Sub
  
 Sub t_Tick
@@ -190,6 +200,21 @@ Sub lstOnes_ItemClick (Position As Int, Value As Object)
  
 			End Try
 			
+		Case 2
+			Try
+ 
+				Dim Facebook As Intent
+ 
+				Facebook.Initialize(Facebook.ACTION_VIEW, "fb://page/627699334104477")
+				StartActivity(Facebook)
+ 
+			Catch
+ 
+				Dim i As Intent
+				i.Initialize(i.ACTION_VIEW, "https://m.facebook.com/MmFreeAndroidApps")
+ 
+				StartActivity(i)
+			End Try
 		Case 4
 			StartActivity(p.OpenBrowser ("http://www.htetznaing.com/"))
 				   
@@ -210,7 +235,7 @@ Sub lstOnes_ItemClick (Position As Int, Value As Object)
 			End Try
 			
 		Case 6
-			StartActivity(p.OpenBrowser("https://play.google.com/store/apps/details?id=com.htetznaing.mmheartfont"))
+			StartActivity(p.OpenBrowser("http://bit.ly/2mqSEWy"))
 	End Select
 End Sub
 
@@ -247,11 +272,11 @@ Sub menu_Click
 		sm.Hide
 	Else
 		sm.Show
-'		b1.Visible =False
-'		b2.Visible = False
-'		b3.Visible = False
-'		b4.Visible = False
-'		tt.Enabled = True
+		'		b1.Visible =False
+		'		b2.Visible = False
+		'		b3.Visible = False
+		'		b4.Visible = False
+		'		tt.Enabled = True
 	End If
 End Sub
 
