@@ -348,7 +348,6 @@ public anywheresoftware.b4a.objects.LabelWrapper _lb = null;
 public anywheresoftware.b4a.objects.LabelWrapper _lw = null;
 public anywheresoftware.b4a.keywords.constants.TypefaceWrapper _mm = null;
 public static String _rooot = "";
-public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public com.htetznaing.mmheartfont2.main _main = null;
 public com.htetznaing.mmheartfont2.main2 _main2 = null;
 public com.htetznaing.mmheartfont2.samsung _samsung = null;
@@ -368,6 +367,7 @@ public static void initializeProcessGlobals() {
 }
 public static String  _activity_create(boolean _firsttime) throws Exception{
 anywheresoftware.b4a.objects.drawable.ColorDrawable _b1bg = null;
+int _height = 0;
  //BA.debugLineNum = 31;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
  //BA.debugLineNum = 33;BA.debugLine="Select ph.SdkVersion";
 switch (BA.switchObjectToInt(mostCurrent._ph.getSdkVersion(),(int) (2),(int) (3),(int) (4),(int) (5),(int) (6),(int) (7),(int) (8),(int) (9),(int) (10),(int) (11),(int) (12),(int) (13),(int) (14),(int) (15),(int) (16),(int) (17),(int) (18),(int) (19),(int) (21),(int) (22),(int) (23),(int) (24),(int) (25))) {
@@ -607,142 +607,159 @@ mostCurrent._share.setBackground((android.graphics.drawable.Drawable)(mostCurren
 mostCurrent._share.setGravity(anywheresoftware.b4a.keywords.Common.Gravity.CENTER);
  //BA.debugLineNum = 141;BA.debugLine="Activity.AddView(share,100%x - 40dip,12.5dip,30di";
 mostCurrent._activity.AddView((android.view.View)(mostCurrent._share.getObject()),(int) (anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA)-anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (40))),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (12.5)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (30)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (30)));
- //BA.debugLineNum = 143;BA.debugLine="Banner.Initialize(\"Banner\",\"ca-app-pub-4173348573";
-mostCurrent._banner.Initialize(mostCurrent.activityBA,"Banner","ca-app-pub-4173348573252986/1553645756");
- //BA.debugLineNum = 144;BA.debugLine="Banner.LoadAd";
+ //BA.debugLineNum = 143;BA.debugLine="Banner.Initialize2(\"Banner\",\"ca-app-pub-417334857";
+mostCurrent._banner.Initialize2(mostCurrent.activityBA,"Banner","ca-app-pub-4173348573252986/1553645756",mostCurrent._banner.SIZE_SMART_BANNER);
+ //BA.debugLineNum = 144;BA.debugLine="Dim height As Int";
+_height = 0;
+ //BA.debugLineNum = 145;BA.debugLine="If GetDeviceLayoutValues.ApproximateScreenSize <";
+if (anywheresoftware.b4a.keywords.Common.GetDeviceLayoutValues(mostCurrent.activityBA).getApproximateScreenSize()<6) { 
+ //BA.debugLineNum = 147;BA.debugLine="If 100%x > 100%y Then height = 32dip Else height";
+if (anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA)>anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)) { 
+_height = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32));}
+else {
+_height = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50));};
+ }else {
+ //BA.debugLineNum = 150;BA.debugLine="height = 90dip";
+_height = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (90));
+ };
+ //BA.debugLineNum = 152;BA.debugLine="Activity.AddView(Banner, 0dip, 100%y - height, 10";
+mostCurrent._activity.AddView((android.view.View)(mostCurrent._banner.getObject()),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (0)),(int) (anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)-_height),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),_height);
+ //BA.debugLineNum = 153;BA.debugLine="Banner.LoadAd";
 mostCurrent._banner.LoadAd();
- //BA.debugLineNum = 145;BA.debugLine="Activity.AddView(Banner,0%x,100%y - 50dip,100%x,5";
-mostCurrent._activity.AddView((android.view.View)(mostCurrent._banner.getObject()),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (0),mostCurrent.activityBA),(int) (anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)-anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50))),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50)));
- //BA.debugLineNum = 147;BA.debugLine="Interstitial.Initialize(\"Interstitial\",\"ca-app-pu";
+ //BA.debugLineNum = 154;BA.debugLine="Log(Banner)";
+anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(mostCurrent._banner));
+ //BA.debugLineNum = 156;BA.debugLine="Interstitial.Initialize(\"Interstitial\",\"ca-app-pu";
 mostCurrent._interstitial.Initialize(mostCurrent.activityBA,"Interstitial","ca-app-pub-4173348573252986/4507112156");
- //BA.debugLineNum = 148;BA.debugLine="Interstitial.LoadAd";
+ //BA.debugLineNum = 157;BA.debugLine="Interstitial.LoadAd";
 mostCurrent._interstitial.LoadAd();
- //BA.debugLineNum = 150;BA.debugLine="ad1.Initialize(\"ad1\",100)";
+ //BA.debugLineNum = 159;BA.debugLine="ad1.Initialize(\"ad1\",100)";
 _ad1.Initialize(processBA,"ad1",(long) (100));
- //BA.debugLineNum = 151;BA.debugLine="ad1.Enabled = False";
+ //BA.debugLineNum = 160;BA.debugLine="ad1.Enabled = False";
 _ad1.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 152;BA.debugLine="ad2.Initialize(\"ad2\",60000)";
+ //BA.debugLineNum = 161;BA.debugLine="ad2.Initialize(\"ad2\",60000)";
 _ad2.Initialize(processBA,"ad2",(long) (60000));
- //BA.debugLineNum = 153;BA.debugLine="ad2.Enabled = True";
+ //BA.debugLineNum = 162;BA.debugLine="ad2.Enabled = True";
 _ad2.setEnabled(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 155;BA.debugLine="ti.Initialize(\"ti\",100)";
+ //BA.debugLineNum = 164;BA.debugLine="ti.Initialize(\"ti\",100)";
 _ti.Initialize(processBA,"ti",(long) (100));
- //BA.debugLineNum = 156;BA.debugLine="ti.Enabled = False";
+ //BA.debugLineNum = 165;BA.debugLine="ti.Enabled = False";
 _ti.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 157;BA.debugLine="tr.Initialize(\"tr\",100)";
+ //BA.debugLineNum = 166;BA.debugLine="tr.Initialize(\"tr\",100)";
 _tr.Initialize(processBA,"tr",(long) (100));
- //BA.debugLineNum = 158;BA.debugLine="tr.Enabled = False";
+ //BA.debugLineNum = 167;BA.debugLine="tr.Enabled = False";
 _tr.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 160;BA.debugLine="ist.Initialize(\"ist\",5000)";
+ //BA.debugLineNum = 169;BA.debugLine="ist.Initialize(\"ist\",5000)";
 _ist.Initialize(processBA,"ist",(long) (5000));
- //BA.debugLineNum = 161;BA.debugLine="ist.Enabled = False";
+ //BA.debugLineNum = 170;BA.debugLine="ist.Enabled = False";
 _ist.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 162;BA.debugLine="rst.Initialize(\"rst\",5000)";
+ //BA.debugLineNum = 171;BA.debugLine="rst.Initialize(\"rst\",5000)";
 _rst.Initialize(processBA,"rst",(long) (5000));
- //BA.debugLineNum = 163;BA.debugLine="rst.Enabled = False";
+ //BA.debugLineNum = 172;BA.debugLine="rst.Enabled = False";
 _rst.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 164;BA.debugLine="End Sub";
+ //BA.debugLineNum = 173;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
 anywheresoftware.b4a.objects.IntentWrapper _in = null;
 anywheresoftware.b4a.phone.PackageManagerWrapper _pm = null;
- //BA.debugLineNum = 577;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 578;BA.debugLine="Dim in As Intent";
+ //BA.debugLineNum = 587;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 588;BA.debugLine="Dim in As Intent";
 _in = new anywheresoftware.b4a.objects.IntentWrapper();
- //BA.debugLineNum = 579;BA.debugLine="Dim pm As PackageManager";
+ //BA.debugLineNum = 589;BA.debugLine="Dim pm As PackageManager";
 _pm = new anywheresoftware.b4a.phone.PackageManagerWrapper();
- //BA.debugLineNum = 580;BA.debugLine="in = pm.GetApplicationIntent(\"com.xinmei365.fonu\"";
+ //BA.debugLineNum = 590;BA.debugLine="in = pm.GetApplicationIntent(\"com.xinmei365.fonu\"";
 _in = _pm.GetApplicationIntent("com.xinmei365.fonu");
- //BA.debugLineNum = 581;BA.debugLine="If in.IsInitialized Then";
+ //BA.debugLineNum = 591;BA.debugLine="If in.IsInitialized Then";
 if (_in.IsInitialized()) { 
- //BA.debugLineNum = 582;BA.debugLine="Dim ml As MLfiles";
+ //BA.debugLineNum = 592;BA.debugLine="Dim ml As MLfiles";
 mostCurrent._ml = new MLfiles.Fileslib.MLfiles();
- //BA.debugLineNum = 583;BA.debugLine="ml.rmrf(File.DirRootExternal & \"/.MyanmarHeartFo";
+ //BA.debugLineNum = 593;BA.debugLine="ml.rmrf(File.DirRootExternal & \"/.MyanmarHeartFo";
 mostCurrent._ml.rmrf(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal()+"/.MyanmarHeartFont");
  };
- //BA.debugLineNum = 585;BA.debugLine="End Sub";
+ //BA.debugLineNum = 595;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
 anywheresoftware.b4a.objects.IntentWrapper _in = null;
 anywheresoftware.b4a.phone.PackageManagerWrapper _pm = null;
- //BA.debugLineNum = 554;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 555;BA.debugLine="Dim in As Intent";
+ //BA.debugLineNum = 564;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 565;BA.debugLine="Dim in As Intent";
 _in = new anywheresoftware.b4a.objects.IntentWrapper();
- //BA.debugLineNum = 556;BA.debugLine="Dim pm As PackageManager";
+ //BA.debugLineNum = 566;BA.debugLine="Dim pm As PackageManager";
 _pm = new anywheresoftware.b4a.phone.PackageManagerWrapper();
- //BA.debugLineNum = 557;BA.debugLine="in = pm.GetApplicationIntent(\"com.xinmei365.fonu\"";
+ //BA.debugLineNum = 567;BA.debugLine="in = pm.GetApplicationIntent(\"com.xinmei365.fonu\"";
 _in = _pm.GetApplicationIntent("com.xinmei365.fonu");
- //BA.debugLineNum = 558;BA.debugLine="If in.IsInitialized Then";
+ //BA.debugLineNum = 568;BA.debugLine="If in.IsInitialized Then";
 if (_in.IsInitialized()) { 
- //BA.debugLineNum = 559;BA.debugLine="Dim ml As MLfiles";
+ //BA.debugLineNum = 569;BA.debugLine="Dim ml As MLfiles";
 mostCurrent._ml = new MLfiles.Fileslib.MLfiles();
- //BA.debugLineNum = 560;BA.debugLine="ml.rmrf(File.DirRootExternal & \"/.MyanmarHeartFo";
+ //BA.debugLineNum = 570;BA.debugLine="ml.rmrf(File.DirRootExternal & \"/.MyanmarHeartFo";
 mostCurrent._ml.rmrf(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal()+"/.MyanmarHeartFont");
  };
- //BA.debugLineNum = 562;BA.debugLine="End Sub";
+ //BA.debugLineNum = 572;BA.debugLine="End Sub";
 return "";
 }
 public static String  _ad1_tick() throws Exception{
- //BA.debugLineNum = 564;BA.debugLine="Sub ad1_Tick";
- //BA.debugLineNum = 565;BA.debugLine="If Interstitial.Ready Then Interstitial.Show";
+ //BA.debugLineNum = 574;BA.debugLine="Sub ad1_Tick";
+ //BA.debugLineNum = 575;BA.debugLine="If Interstitial.Ready Then Interstitial.Show";
 if (mostCurrent._interstitial.getReady()) { 
 mostCurrent._interstitial.Show();};
- //BA.debugLineNum = 566;BA.debugLine="ad1.Enabled = False";
+ //BA.debugLineNum = 576;BA.debugLine="ad1.Enabled = False";
 _ad1.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 567;BA.debugLine="End Sub";
+ //BA.debugLineNum = 577;BA.debugLine="End Sub";
 return "";
 }
 public static String  _ad2_tick() throws Exception{
- //BA.debugLineNum = 573;BA.debugLine="Sub ad2_Tick";
- //BA.debugLineNum = 574;BA.debugLine="If Interstitial.Ready Then Interstitial.Show";
+ //BA.debugLineNum = 583;BA.debugLine="Sub ad2_Tick";
+ //BA.debugLineNum = 584;BA.debugLine="If Interstitial.Ready Then Interstitial.Show";
 if (mostCurrent._interstitial.getReady()) { 
 mostCurrent._interstitial.Show();};
- //BA.debugLineNum = 575;BA.debugLine="End Sub";
+ //BA.debugLineNum = 585;BA.debugLine="End Sub";
 return "";
 }
 public static String  _b1_click() throws Exception{
- //BA.debugLineNum = 166;BA.debugLine="Sub b1_Click";
- //BA.debugLineNum = 167;BA.debugLine="ml.GetRoot";
+ //BA.debugLineNum = 175;BA.debugLine="Sub b1_Click";
+ //BA.debugLineNum = 176;BA.debugLine="ad1.Enabled = True";
+_ad1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 177;BA.debugLine="ml.GetRoot";
 mostCurrent._ml.GetRoot();
- //BA.debugLineNum = 168;BA.debugLine="If ml.HaveRoot Then";
+ //BA.debugLineNum = 178;BA.debugLine="If ml.HaveRoot Then";
 if (mostCurrent._ml.HaveRoot) { 
- //BA.debugLineNum = 169;BA.debugLine="File.Copy(File.DirAssets,\"myanmar heart.ttf\",Fil";
-anywheresoftware.b4a.keywords.Common.File.Copy(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"myanmar heart.ttf",anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"MyanmarHeart.ttf");
- //BA.debugLineNum = 170;BA.debugLine="ProgressDialogShow(\"Installing...\")";
+ //BA.debugLineNum = 179;BA.debugLine="File.Copy(File.DirAssets,\"Heart.ttf\",File.DirRoo";
+anywheresoftware.b4a.keywords.Common.File.Copy(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"Heart.ttf",anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"MyanmarHeart.ttf");
+ //BA.debugLineNum = 180;BA.debugLine="ProgressDialogShow(\"Installing...\")";
 anywheresoftware.b4a.keywords.Common.ProgressDialogShow(mostCurrent.activityBA,"Installing...");
- //BA.debugLineNum = 171;BA.debugLine="ti.Enabled = True";
+ //BA.debugLineNum = 181;BA.debugLine="ti.Enabled = True";
 _ti.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 173;BA.debugLine="Msgbox(\"Your device not have Root Access!\",\"Atte";
+ //BA.debugLineNum = 183;BA.debugLine="Msgbox(\"Your device not have Root Access!\",\"Atte";
 anywheresoftware.b4a.keywords.Common.Msgbox("Your device not have Root Access!","Attention!",mostCurrent.activityBA);
  };
- //BA.debugLineNum = 175;BA.debugLine="End Sub";
+ //BA.debugLineNum = 185;BA.debugLine="End Sub";
 return "";
 }
 public static String  _b2_click() throws Exception{
- //BA.debugLineNum = 407;BA.debugLine="Sub b2_Click";
- //BA.debugLineNum = 408;BA.debugLine="ml.GetRoot";
+ //BA.debugLineNum = 417;BA.debugLine="Sub b2_Click";
+ //BA.debugLineNum = 418;BA.debugLine="ml.GetRoot";
 mostCurrent._ml.GetRoot();
- //BA.debugLineNum = 409;BA.debugLine="If ml.HaveRoot Then";
+ //BA.debugLineNum = 419;BA.debugLine="If ml.HaveRoot Then";
 if (mostCurrent._ml.HaveRoot) { 
- //BA.debugLineNum = 410;BA.debugLine="ProgressDialogShow(\"Please Wait...\")";
+ //BA.debugLineNum = 420;BA.debugLine="ProgressDialogShow(\"Please Wait...\")";
 anywheresoftware.b4a.keywords.Common.ProgressDialogShow(mostCurrent.activityBA,"Please Wait...");
- //BA.debugLineNum = 411;BA.debugLine="tr.Enabled = True";
+ //BA.debugLineNum = 421;BA.debugLine="tr.Enabled = True";
 _tr.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 413;BA.debugLine="Msgbox(\"Your device not have Root Access!\",\"Atte";
+ //BA.debugLineNum = 423;BA.debugLine="Msgbox(\"Your device not have Root Access!\",\"Atte";
 anywheresoftware.b4a.keywords.Common.Msgbox("Your device not have Root Access!","Attention!",mostCurrent.activityBA);
  };
- //BA.debugLineNum = 415;BA.debugLine="End Sub";
+ //BA.debugLineNum = 425;BA.debugLine="End Sub";
 return "";
 }
 public static String  _b3_click() throws Exception{
- //BA.debugLineNum = 550;BA.debugLine="Sub b3_Click";
- //BA.debugLineNum = 551;BA.debugLine="StartActivity(Tutorial)";
+ //BA.debugLineNum = 560;BA.debugLine="Sub b3_Click";
+ //BA.debugLineNum = 561;BA.debugLine="StartActivity(Tutorial)";
 anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._tutorial.getObject()));
- //BA.debugLineNum = 552;BA.debugLine="End Sub";
+ //BA.debugLineNum = 562;BA.debugLine="End Sub";
 return "";
 }
 public static String  _globals() throws Exception{
@@ -776,10 +793,10 @@ mostCurrent._copy = new b4a.util.BClipboard();
  //BA.debugLineNum = 25;BA.debugLine="Dim lb,lw As Label";
 mostCurrent._lb = new anywheresoftware.b4a.objects.LabelWrapper();
 mostCurrent._lw = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 26;BA.debugLine="Dim mm As Typeface : mm = mm.LoadFromAssets(\"Myan";
+ //BA.debugLineNum = 26;BA.debugLine="Dim mm As Typeface : mm = mm.LoadFromAssets(\"Hear";
 mostCurrent._mm = new anywheresoftware.b4a.keywords.constants.TypefaceWrapper();
- //BA.debugLineNum = 26;BA.debugLine="Dim mm As Typeface : mm = mm.LoadFromAssets(\"Myan";
-mostCurrent._mm.setObject((android.graphics.Typeface)(mostCurrent._mm.LoadFromAssets("Myanmar Heart.ttf")));
+ //BA.debugLineNum = 26;BA.debugLine="Dim mm As Typeface : mm = mm.LoadFromAssets(\"Hear";
+mostCurrent._mm.setObject((android.graphics.Typeface)(mostCurrent._mm.LoadFromAssets("Heart.ttf")));
  //BA.debugLineNum = 27;BA.debugLine="Dim ml As MLfiles";
 mostCurrent._ml = new MLfiles.Fileslib.MLfiles();
  //BA.debugLineNum = 28;BA.debugLine="Dim rooot As String";
@@ -788,38 +805,38 @@ mostCurrent._rooot = "";
 return "";
 }
 public static String  _interstitial_adclosed() throws Exception{
- //BA.debugLineNum = 569;BA.debugLine="Sub Interstitial_AdClosed";
- //BA.debugLineNum = 570;BA.debugLine="Interstitial.LoadAd";
+ //BA.debugLineNum = 579;BA.debugLine="Sub Interstitial_AdClosed";
+ //BA.debugLineNum = 580;BA.debugLine="Interstitial.LoadAd";
 mostCurrent._interstitial.LoadAd();
- //BA.debugLineNum = 571;BA.debugLine="End Sub";
+ //BA.debugLineNum = 581;BA.debugLine="End Sub";
 return "";
 }
 public static String  _ist_tick() throws Exception{
- //BA.debugLineNum = 397;BA.debugLine="Sub ist_Tick";
- //BA.debugLineNum = 398;BA.debugLine="ProgressDialogHide";
+ //BA.debugLineNum = 407;BA.debugLine="Sub ist_Tick";
+ //BA.debugLineNum = 408;BA.debugLine="ProgressDialogHide";
 anywheresoftware.b4a.keywords.Common.ProgressDialogHide();
- //BA.debugLineNum = 399;BA.debugLine="Msgbox(\"Congratulations! Myanmar Installed in you";
+ //BA.debugLineNum = 409;BA.debugLine="Msgbox(\"Congratulations! Myanmar Installed in you";
 anywheresoftware.b4a.keywords.Common.Msgbox("Congratulations! Myanmar Installed in your device"+anywheresoftware.b4a.keywords.Common.CRLF+"Now, your device will be reboot!","Completed",mostCurrent.activityBA);
- //BA.debugLineNum = 400;BA.debugLine="ml.GetRoot";
+ //BA.debugLineNum = 410;BA.debugLine="ml.GetRoot";
 mostCurrent._ml.GetRoot();
- //BA.debugLineNum = 401;BA.debugLine="If ml.HaveRoot Then";
+ //BA.debugLineNum = 411;BA.debugLine="If ml.HaveRoot Then";
 if (mostCurrent._ml.HaveRoot) { 
- //BA.debugLineNum = 402;BA.debugLine="ml.RootCmd(\"reboot\",\"\",Null,Null,False)";
+ //BA.debugLineNum = 412;BA.debugLine="ml.RootCmd(\"reboot\",\"\",Null,Null,False)";
 mostCurrent._ml.RootCmd("reboot","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 404;BA.debugLine="ist.Enabled = False";
+ //BA.debugLineNum = 414;BA.debugLine="ist.Enabled = False";
 _ist.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 405;BA.debugLine="End Sub";
+ //BA.debugLineNum = 415;BA.debugLine="End Sub";
 return "";
 }
 public static String  _menu_click() throws Exception{
- //BA.debugLineNum = 621;BA.debugLine="Sub menu_Click";
- //BA.debugLineNum = 622;BA.debugLine="If sm.isVisible Then sm.Hide Else sm.Show";
+ //BA.debugLineNum = 631;BA.debugLine="Sub menu_Click";
+ //BA.debugLineNum = 632;BA.debugLine="If sm.isVisible Then sm.Hide Else sm.Show";
 if (mostCurrent._sm._isvisible()) { 
 mostCurrent._sm._hide();}
 else {
 mostCurrent._sm._show();};
- //BA.debugLineNum = 623;BA.debugLine="End Sub";
+ //BA.debugLineNum = 633;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -837,552 +854,552 @@ _rst = new anywheresoftware.b4a.objects.Timer();
 return "";
 }
 public static String  _rst_tick() throws Exception{
- //BA.debugLineNum = 538;BA.debugLine="Sub rst_Tick";
- //BA.debugLineNum = 539;BA.debugLine="ml.GetRoot";
+ //BA.debugLineNum = 548;BA.debugLine="Sub rst_Tick";
+ //BA.debugLineNum = 549;BA.debugLine="ml.GetRoot";
 mostCurrent._ml.GetRoot();
- //BA.debugLineNum = 540;BA.debugLine="If ml.HaveRoot Then";
+ //BA.debugLineNum = 550;BA.debugLine="If ml.HaveRoot Then";
 if (mostCurrent._ml.HaveRoot) { 
- //BA.debugLineNum = 541;BA.debugLine="ProgressDialogHide";
+ //BA.debugLineNum = 551;BA.debugLine="ProgressDialogHide";
 anywheresoftware.b4a.keywords.Common.ProgressDialogHide();
- //BA.debugLineNum = 542;BA.debugLine="Msgbox(\"Congratulations! Original Restored\" & CR";
+ //BA.debugLineNum = 552;BA.debugLine="Msgbox(\"Congratulations! Original Restored\" & CR";
 anywheresoftware.b4a.keywords.Common.Msgbox("Congratulations! Original Restored"+anywheresoftware.b4a.keywords.Common.CRLF+"Now, your device will be reboot!","Completed",mostCurrent.activityBA);
- //BA.debugLineNum = 543;BA.debugLine="ml.RootCmd(\"reboot\",\"\",Null,Null,False)";
+ //BA.debugLineNum = 553;BA.debugLine="ml.RootCmd(\"reboot\",\"\",Null,Null,False)";
 mostCurrent._ml.RootCmd("reboot","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
  }else {
- //BA.debugLineNum = 545;BA.debugLine="Msgbox(\"Your device not have Root Access!\",\"Atte";
+ //BA.debugLineNum = 555;BA.debugLine="Msgbox(\"Your device not have Root Access!\",\"Atte";
 anywheresoftware.b4a.keywords.Common.Msgbox("Your device not have Root Access!","Attention!",mostCurrent.activityBA);
  };
- //BA.debugLineNum = 547;BA.debugLine="rst.Enabled = False";
+ //BA.debugLineNum = 557;BA.debugLine="rst.Enabled = False";
 _rst.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 548;BA.debugLine="End Sub";
+ //BA.debugLineNum = 558;BA.debugLine="End Sub";
 return "";
 }
 public static String  _share_click() throws Exception{
 anywheresoftware.b4a.objects.IntentWrapper _shareit = null;
- //BA.debugLineNum = 625;BA.debugLine="Sub share_Click";
- //BA.debugLineNum = 626;BA.debugLine="Dim ShareIt As Intent";
+ //BA.debugLineNum = 635;BA.debugLine="Sub share_Click";
+ //BA.debugLineNum = 636;BA.debugLine="Dim ShareIt As Intent";
 _shareit = new anywheresoftware.b4a.objects.IntentWrapper();
- //BA.debugLineNum = 627;BA.debugLine="copy.clrText";
+ //BA.debugLineNum = 637;BA.debugLine="copy.clrText";
 mostCurrent._copy.clrText(mostCurrent.activityBA);
- //BA.debugLineNum = 628;BA.debugLine="copy.setText(\"#Myanmar_Heart_Font App! Beautiful";
-mostCurrent._copy.setText(mostCurrent.activityBA,"#Myanmar_Heart_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/myanmar-heart-font/");
- //BA.debugLineNum = 629;BA.debugLine="ShareIt.Initialize (ShareIt.ACTION_SEND,\"\")";
+ //BA.debugLineNum = 638;BA.debugLine="copy.setText(\"#Myanmar_Jojar_Font App! Beautiful";
+mostCurrent._copy.setText(mostCurrent.activityBA,"#Myanmar_Jojar_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/search?q=Myanmar+Heart+Font");
+ //BA.debugLineNum = 639;BA.debugLine="ShareIt.Initialize (ShareIt.ACTION_SEND,\"\")";
 _shareit.Initialize(_shareit.ACTION_SEND,"");
- //BA.debugLineNum = 630;BA.debugLine="ShareIt.SetType (\"text/plain\")";
+ //BA.debugLineNum = 640;BA.debugLine="ShareIt.SetType (\"text/plain\")";
 _shareit.SetType("text/plain");
- //BA.debugLineNum = 631;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.TEXT\",cop";
+ //BA.debugLineNum = 641;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.TEXT\",cop";
 _shareit.PutExtra("android.intent.extra.TEXT",(Object)(mostCurrent._copy.getText(mostCurrent.activityBA)));
- //BA.debugLineNum = 632;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.SUBJECT\",";
+ //BA.debugLineNum = 642;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.SUBJECT\",";
 _shareit.PutExtra("android.intent.extra.SUBJECT",(Object)("Get Free!!"));
- //BA.debugLineNum = 633;BA.debugLine="ShareIt.WrapAsIntentChooser(\"Share App Via...\")";
+ //BA.debugLineNum = 643;BA.debugLine="ShareIt.WrapAsIntentChooser(\"Share App Via...\")";
 _shareit.WrapAsIntentChooser("Share App Via...");
- //BA.debugLineNum = 634;BA.debugLine="StartActivity (ShareIt)";
+ //BA.debugLineNum = 644;BA.debugLine="StartActivity (ShareIt)";
 anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(_shareit.getObject()));
- //BA.debugLineNum = 636;BA.debugLine="End Sub";
+ //BA.debugLineNum = 645;BA.debugLine="End Sub";
 return "";
 }
 public static String  _slidemenu_click(Object _item) throws Exception{
 anywheresoftware.b4a.objects.IntentWrapper _shareit = null;
 anywheresoftware.b4a.phone.Phone.PhoneIntents _p = null;
- //BA.debugLineNum = 588;BA.debugLine="Sub SlideMenu_Click(Item As Object)";
- //BA.debugLineNum = 589;BA.debugLine="sm.Hide";
+ //BA.debugLineNum = 598;BA.debugLine="Sub SlideMenu_Click(Item As Object)";
+ //BA.debugLineNum = 599;BA.debugLine="sm.Hide";
 mostCurrent._sm._hide();
- //BA.debugLineNum = 590;BA.debugLine="Select Item";
+ //BA.debugLineNum = 600;BA.debugLine="Select Item";
 switch (BA.switchObjectToInt(_item,(Object)(1),(Object)(2),(Object)(3),(Object)(4),(Object)(5),(Object)(6),(Object)(7),(Object)(8),(Object)(9))) {
 case 0: {
- //BA.debugLineNum = 592;BA.debugLine="StartActivity(Me)";
-anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,other.getObject());
- break; }
-case 1: {
- //BA.debugLineNum = 594;BA.debugLine="StartActivity(Oppo)";
-anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._oppo.getObject()));
- break; }
-case 2: {
- //BA.debugLineNum = 596;BA.debugLine="StartActivity(Vivo)";
-anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._vivo.getObject()));
- break; }
-case 3: {
- //BA.debugLineNum = 598;BA.debugLine="StartActivity(Huawei)";
-anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._huawei.getObject()));
- break; }
-case 4: {
- //BA.debugLineNum = 600;BA.debugLine="StartActivity(Xiaomi)";
-anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._xiaomi.getObject()));
- break; }
-case 5: {
  //BA.debugLineNum = 602;BA.debugLine="StartActivity(Me)";
 anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,other.getObject());
  break; }
+case 1: {
+ //BA.debugLineNum = 604;BA.debugLine="StartActivity(Oppo)";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._oppo.getObject()));
+ break; }
+case 2: {
+ //BA.debugLineNum = 606;BA.debugLine="StartActivity(Vivo)";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._vivo.getObject()));
+ break; }
+case 3: {
+ //BA.debugLineNum = 608;BA.debugLine="StartActivity(Huawei)";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._huawei.getObject()));
+ break; }
+case 4: {
+ //BA.debugLineNum = 610;BA.debugLine="StartActivity(Xiaomi)";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._xiaomi.getObject()));
+ break; }
+case 5: {
+ //BA.debugLineNum = 612;BA.debugLine="StartActivity(Me)";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,other.getObject());
+ break; }
 case 6: {
- //BA.debugLineNum = 604;BA.debugLine="Dim ShareIt As Intent";
+ //BA.debugLineNum = 614;BA.debugLine="Dim ShareIt As Intent";
 _shareit = new anywheresoftware.b4a.objects.IntentWrapper();
- //BA.debugLineNum = 605;BA.debugLine="copy.clrText";
+ //BA.debugLineNum = 615;BA.debugLine="copy.clrText";
 mostCurrent._copy.clrText(mostCurrent.activityBA);
- //BA.debugLineNum = 606;BA.debugLine="copy.setText(\"#Myanmar_Heart_Font App! Beautifu";
-mostCurrent._copy.setText(mostCurrent.activityBA,"#Myanmar_Heart_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/myanmar-heart-font/");
- //BA.debugLineNum = 607;BA.debugLine="ShareIt.Initialize (ShareIt.ACTION_SEND,\"\")";
+ //BA.debugLineNum = 616;BA.debugLine="copy.setText(\"#Myanmar_Jojar_Font App! Beautifu";
+mostCurrent._copy.setText(mostCurrent.activityBA,"#Myanmar_Jojar_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/search?q=Myanmar+Heart+Font");
+ //BA.debugLineNum = 617;BA.debugLine="ShareIt.Initialize (ShareIt.ACTION_SEND,\"\")";
 _shareit.Initialize(_shareit.ACTION_SEND,"");
- //BA.debugLineNum = 608;BA.debugLine="ShareIt.SetType (\"text/plain\")";
+ //BA.debugLineNum = 618;BA.debugLine="ShareIt.SetType (\"text/plain\")";
 _shareit.SetType("text/plain");
- //BA.debugLineNum = 609;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.TEXT\",c";
+ //BA.debugLineNum = 619;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.TEXT\",c";
 _shareit.PutExtra("android.intent.extra.TEXT",(Object)(mostCurrent._copy.getText(mostCurrent.activityBA)));
- //BA.debugLineNum = 610;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.SUBJECT";
+ //BA.debugLineNum = 620;BA.debugLine="ShareIt.PutExtra (\"android.intent.extra.SUBJECT";
 _shareit.PutExtra("android.intent.extra.SUBJECT",(Object)("Get Free!!"));
- //BA.debugLineNum = 611;BA.debugLine="ShareIt.WrapAsIntentChooser(\"Share App Via...\")";
+ //BA.debugLineNum = 621;BA.debugLine="ShareIt.WrapAsIntentChooser(\"Share App Via...\")";
 _shareit.WrapAsIntentChooser("Share App Via...");
- //BA.debugLineNum = 612;BA.debugLine="StartActivity (ShareIt)";
+ //BA.debugLineNum = 622;BA.debugLine="StartActivity (ShareIt)";
 anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(_shareit.getObject()));
  break; }
 case 7: {
- //BA.debugLineNum = 614;BA.debugLine="Dim p As PhoneIntents";
+ //BA.debugLineNum = 624;BA.debugLine="Dim p As PhoneIntents";
 _p = new anywheresoftware.b4a.phone.Phone.PhoneIntents();
- //BA.debugLineNum = 615;BA.debugLine="StartActivity(p.OpenBrowser(\"http://www.htetzna";
+ //BA.debugLineNum = 625;BA.debugLine="StartActivity(p.OpenBrowser(\"http://www.htetzna";
 anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(_p.OpenBrowser("http://www.htetznaing.com")));
  break; }
 case 8: {
- //BA.debugLineNum = 617;BA.debugLine="StartActivity(About)";
+ //BA.debugLineNum = 627;BA.debugLine="StartActivity(About)";
 anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._about.getObject()));
  break; }
 }
 ;
- //BA.debugLineNum = 619;BA.debugLine="End Sub";
+ //BA.debugLineNum = 629;BA.debugLine="End Sub";
 return "";
 }
 public static String  _ti_tick() throws Exception{
- //BA.debugLineNum = 177;BA.debugLine="Sub ti_Tick";
- //BA.debugLineNum = 178;BA.debugLine="ml.RootCmd(\"mount -o rw,remount /system\",\"\",Null,";
+ //BA.debugLineNum = 187;BA.debugLine="Sub ti_Tick";
+ //BA.debugLineNum = 188;BA.debugLine="ml.RootCmd(\"mount -o rw,remount /system\",\"\",Null,";
 mostCurrent._ml.RootCmd("mount -o rw,remount /system","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 179;BA.debugLine="If ml.Exists(\"/system/Ht3tzN4ing.ttf\") = False Th";
+ //BA.debugLineNum = 189;BA.debugLine="If ml.Exists(\"/system/Ht3tzN4ing.ttf\") = False Th";
 if (mostCurrent._ml.Exists("/system/Ht3tzN4ing.ttf")==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 180;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /syst";
+ //BA.debugLineNum = 190;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /syst";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/Ht3tzN4ing.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 182;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk.ttf\") = True";
+ //BA.debugLineNum = 192;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk.ttf\") = True";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 183;BA.debugLine="ml.mv(\"/system/fonts/Padauk.ttf\",\"/system/fonts";
+ //BA.debugLineNum = 193;BA.debugLine="ml.mv(\"/system/fonts/Padauk.ttf\",\"/system/fonts";
 mostCurrent._ml.mv("/system/fonts/Padauk.ttf","/system/fonts/Padauk.ttf.bak");
- //BA.debugLineNum = 184;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 194;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Padauk.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 185;BA.debugLine="ml.chmod(\"/system/fonts/Padauk.ttf\",644)";
+ //BA.debugLineNum = 195;BA.debugLine="ml.chmod(\"/system/fonts/Padauk.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Padauk.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 189;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-book.ttf\") =";
+ //BA.debugLineNum = 199;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-book.ttf\") =";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk-book.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 190;BA.debugLine="ml.mv(\"/system/fonts/Padauk-book.ttf\",\"/system/";
+ //BA.debugLineNum = 200;BA.debugLine="ml.mv(\"/system/fonts/Padauk-book.ttf\",\"/system/";
 mostCurrent._ml.mv("/system/fonts/Padauk-book.ttf","/system/fonts/Padauk-book.ttf.bak");
- //BA.debugLineNum = 191;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 201;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Padauk-book.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 192;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-book.ttf\",644)";
+ //BA.debugLineNum = 202;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-book.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Padauk-book.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 196;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-bookbold.ttf\"";
+ //BA.debugLineNum = 206;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-bookbold.ttf\"";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk-bookbold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 197;BA.debugLine="ml.mv(\"/system/fonts/Padauk-bookbold.ttf\",\"/sys";
+ //BA.debugLineNum = 207;BA.debugLine="ml.mv(\"/system/fonts/Padauk-bookbold.ttf\",\"/sys";
 mostCurrent._ml.mv("/system/fonts/Padauk-bookbold.ttf","/system/fonts/Padauk-bookbold.ttf.bak");
- //BA.debugLineNum = 198;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 208;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Padauk-bookbold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 199;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-bookbold.ttf\",64";
+ //BA.debugLineNum = 209;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-bookbold.ttf\",64";
 mostCurrent._ml.chmod("/system/fonts/Padauk-bookbold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 203;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Bold";
+ //BA.debugLineNum = 213;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Bold";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmar-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 204;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Bold.ttf\",";
+ //BA.debugLineNum = 214;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Bold.ttf\",";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmar-Bold.ttf","/system/fonts/NotoSansMyanmar-Bold.ttf.bak");
- //BA.debugLineNum = 205;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 215;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmar-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 206;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Bold.tt";
+ //BA.debugLineNum = 216;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Bold.tt";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmar-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 210;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Regu";
+ //BA.debugLineNum = 220;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Regu";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmar-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 211;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Regular.tt";
+ //BA.debugLineNum = 221;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Regular.tt";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmar-Regular.ttf","/system/fonts/NotoSansMyanmar-Regular.ttf.bak");
- //BA.debugLineNum = 212;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 222;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmar-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 213;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Regular";
+ //BA.debugLineNum = 223;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Regular";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmar-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 217;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Bo";
+ //BA.debugLineNum = 227;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Bo";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarUI-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 218;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Bold.ttf";
+ //BA.debugLineNum = 228;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Bold.ttf";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarUI-Bold.ttf","/system/fonts/NotoSansMyanmarUI-Bold.ttf.bak");
- //BA.debugLineNum = 219;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 229;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarUI-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 220;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Bold.";
+ //BA.debugLineNum = 230;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Bold.";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarUI-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 224;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Re";
+ //BA.debugLineNum = 234;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Re";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarUI-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 225;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Regular.";
+ //BA.debugLineNum = 235;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Regular.";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarUI-Regular.ttf","/system/fonts/NotoSansMyanmarUI-Regular.ttf.bak");
- //BA.debugLineNum = 226;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 236;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarUI-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 227;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Regul";
+ //BA.debugLineNum = 237;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Regul";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarUI-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 232;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
+ //BA.debugLineNum = 242;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 233;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Bold";
+ //BA.debugLineNum = 243;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Bold";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf","/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf.bak");
- //BA.debugLineNum = 234;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 244;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarZawgyi-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 235;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-B";
+ //BA.debugLineNum = 245;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-B";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 239;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
+ //BA.debugLineNum = 249;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 240;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Regu";
+ //BA.debugLineNum = 250;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Regu";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf","/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf.bak");
- //BA.debugLineNum = 241;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 251;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarZawgyi-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 242;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-R";
+ //BA.debugLineNum = 252;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-R";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 246;BA.debugLine="If ml.Exists(\"/system/fonts/SamsungMyanmar.ttf\")";
+ //BA.debugLineNum = 256;BA.debugLine="If ml.Exists(\"/system/fonts/SamsungMyanmar.ttf\")";
 if (mostCurrent._ml.Exists("/system/fonts/SamsungMyanmar.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 247;BA.debugLine="ml.mv(\"/system/fonts/SamsungMyanmar.ttf\",\"/syst";
+ //BA.debugLineNum = 257;BA.debugLine="ml.mv(\"/system/fonts/SamsungMyanmar.ttf\",\"/syst";
 mostCurrent._ml.mv("/system/fonts/SamsungMyanmar.ttf","/system/fonts/SamsungMyanmar.ttf.bak");
- //BA.debugLineNum = 248;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 258;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/SamsungMyanmar.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 249;BA.debugLine="ml.chmod(\"/system/fonts/SamsungMyanmar.ttf\",644";
+ //BA.debugLineNum = 259;BA.debugLine="ml.chmod(\"/system/fonts/SamsungMyanmar.ttf\",644";
 mostCurrent._ml.chmod("/system/fonts/SamsungMyanmar.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 253;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne.ttf\") = Tr";
+ //BA.debugLineNum = 263;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne.ttf\") = Tr";
 if (mostCurrent._ml.Exists("/system/fonts/ZawgyiOne.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 254;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne.ttf\",\"/system/fo";
+ //BA.debugLineNum = 264;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne.ttf\",\"/system/fo";
 mostCurrent._ml.mv("/system/fonts/ZawgyiOne.ttf","/system/fonts/ZawgyiOne.ttf.bak");
- //BA.debugLineNum = 255;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 265;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/ZawgyiOne.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 256;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne.ttf\",644)";
+ //BA.debugLineNum = 266;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/ZawgyiOne.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 260;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne2008.ttf\")";
+ //BA.debugLineNum = 270;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne2008.ttf\")";
 if (mostCurrent._ml.Exists("/system/fonts/ZawgyiOne2008.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 261;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne2008.ttf\",\"/syste";
+ //BA.debugLineNum = 271;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne2008.ttf\",\"/syste";
 mostCurrent._ml.mv("/system/fonts/ZawgyiOne2008.ttf","/system/fonts/ZawgyiOne2008.ttf.bak");
- //BA.debugLineNum = 262;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 272;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/ZawgyiOne2008.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 263;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne2008.ttf\",644)";
+ //BA.debugLineNum = 273;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne2008.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/ZawgyiOne2008.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 267;BA.debugLine="If ml.Exists(\"/system/fonts/mmsd.ttf\") = True Th";
+ //BA.debugLineNum = 277;BA.debugLine="If ml.Exists(\"/system/fonts/mmsd.ttf\") = True Th";
 if (mostCurrent._ml.Exists("/system/fonts/mmsd.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 268;BA.debugLine="ml.mv(\"/system/fonts/mmsd.ttf\",\"/system/fonts/m";
+ //BA.debugLineNum = 278;BA.debugLine="ml.mv(\"/system/fonts/mmsd.ttf\",\"/system/fonts/m";
 mostCurrent._ml.mv("/system/fonts/mmsd.ttf","/system/fonts/mmsd.ttf.bak");
- //BA.debugLineNum = 269;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 279;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/mmsd.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 270;BA.debugLine="ml.chmod(\"/system/fonts/mmsd.ttf\",644)";
+ //BA.debugLineNum = 280;BA.debugLine="ml.chmod(\"/system/fonts/mmsd.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/mmsd.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 274;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Regular.ttf\")";
+ //BA.debugLineNum = 284;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Regular.ttf\")";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 275;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Regular.ttf\",\"/syst";
+ //BA.debugLineNum = 285;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Regular.ttf\",\"/syst";
 mostCurrent._ml.mv("/system/fonts/Roboto-Regular.ttf","/system/fonts/Roboto-Regular.ttf.bak");
- //BA.debugLineNum = 276;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 286;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Roboto-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 277;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Regular.ttf\",644";
+ //BA.debugLineNum = 287;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Regular.ttf\",644";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 280;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Light.ttf\") =";
+ //BA.debugLineNum = 290;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Light.ttf\") =";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Light.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 281;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Light.ttf\",\"/system";
+ //BA.debugLineNum = 291;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Light.ttf\",\"/system";
 mostCurrent._ml.mv("/system/fonts/Roboto-Light.ttf","/system/fonts/Roboto-Light.ttf.bak");
- //BA.debugLineNum = 282;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 292;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Roboto-Light.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 283;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Light.ttf\",644)";
+ //BA.debugLineNum = 293;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Light.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Light.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 286;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Bold.ttf\") =";
+ //BA.debugLineNum = 296;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Bold.ttf\") =";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 287;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Bold.ttf\",\"/system/";
+ //BA.debugLineNum = 297;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Bold.ttf\",\"/system/";
 mostCurrent._ml.mv("/system/fonts/Roboto-Bold.ttf","/system/fonts/Roboto-Bold.ttf.bak");
- //BA.debugLineNum = 288;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 298;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Roboto-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 289;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Bold.ttf\",644)";
+ //BA.debugLineNum = 299;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Bold.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 292;BA.debugLine="ist.Enabled = True";
+ //BA.debugLineNum = 302;BA.debugLine="ist.Enabled = True";
 _ist.setEnabled(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 293;BA.debugLine="ti.Enabled = False";
+ //BA.debugLineNum = 303;BA.debugLine="ti.Enabled = False";
 _ti.setEnabled(anywheresoftware.b4a.keywords.Common.False);
  }else {
- //BA.debugLineNum = 298;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk.ttf\") = True";
+ //BA.debugLineNum = 308;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk.ttf\") = True";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 299;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 309;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Padauk.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 300;BA.debugLine="ml.chmod(\"/system/fonts/Padauk.ttf\",644)";
+ //BA.debugLineNum = 310;BA.debugLine="ml.chmod(\"/system/fonts/Padauk.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Padauk.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 304;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-book.ttf\") =";
+ //BA.debugLineNum = 314;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-book.ttf\") =";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk-book.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 305;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 315;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Padauk-book.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 306;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-book.ttf\",644)";
+ //BA.debugLineNum = 316;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-book.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Padauk-book.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 310;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-bookbold.ttf\"";
+ //BA.debugLineNum = 320;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-bookbold.ttf\"";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk-bookbold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 311;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 321;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Padauk-bookbold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 312;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-bookbold.ttf\",64";
+ //BA.debugLineNum = 322;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-bookbold.ttf\",64";
 mostCurrent._ml.chmod("/system/fonts/Padauk-bookbold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 316;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Bold";
+ //BA.debugLineNum = 326;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Bold";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmar-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 317;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 327;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmar-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 318;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Bold.tt";
+ //BA.debugLineNum = 328;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Bold.tt";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmar-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 322;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Regu";
+ //BA.debugLineNum = 332;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Regu";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmar-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 323;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 333;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmar-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 324;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Regular";
+ //BA.debugLineNum = 334;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Regular";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmar-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 328;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Bo";
+ //BA.debugLineNum = 338;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Bo";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarUI-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 329;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 339;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarUI-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 330;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Bold.";
+ //BA.debugLineNum = 340;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Bold.";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarUI-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 334;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Re";
+ //BA.debugLineNum = 344;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Re";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarUI-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 335;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 345;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarUI-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 336;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Regul";
+ //BA.debugLineNum = 346;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Regul";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarUI-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 341;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
+ //BA.debugLineNum = 351;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 342;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 352;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarZawgyi-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 343;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-B";
+ //BA.debugLineNum = 353;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-B";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 347;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
+ //BA.debugLineNum = 357;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgy";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 348;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 358;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/NotoSansMyanmarZawgyi-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 349;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-R";
+ //BA.debugLineNum = 359;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-R";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 353;BA.debugLine="If ml.Exists(\"/system/fonts/SamsungMyanmar.ttf\")";
+ //BA.debugLineNum = 363;BA.debugLine="If ml.Exists(\"/system/fonts/SamsungMyanmar.ttf\")";
 if (mostCurrent._ml.Exists("/system/fonts/SamsungMyanmar.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 354;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 364;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/SamsungMyanmar.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 355;BA.debugLine="ml.chmod(\"/system/fonts/SamsungMyanmar.ttf\",644";
+ //BA.debugLineNum = 365;BA.debugLine="ml.chmod(\"/system/fonts/SamsungMyanmar.ttf\",644";
 mostCurrent._ml.chmod("/system/fonts/SamsungMyanmar.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 359;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne.ttf\") = Tr";
+ //BA.debugLineNum = 369;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne.ttf\") = Tr";
 if (mostCurrent._ml.Exists("/system/fonts/ZawgyiOne.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 360;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 370;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/ZawgyiOne.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 361;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne.ttf\",644)";
+ //BA.debugLineNum = 371;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/ZawgyiOne.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 365;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne2008.ttf\")";
+ //BA.debugLineNum = 375;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne2008.ttf\")";
 if (mostCurrent._ml.Exists("/system/fonts/ZawgyiOne2008.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 366;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 376;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/ZawgyiOne2008.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 367;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne2008.ttf\",644)";
+ //BA.debugLineNum = 377;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne2008.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/ZawgyiOne2008.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 371;BA.debugLine="If ml.Exists(\"/system/fonts/mmsd.ttf\") = True Th";
+ //BA.debugLineNum = 381;BA.debugLine="If ml.Exists(\"/system/fonts/mmsd.ttf\") = True Th";
 if (mostCurrent._ml.Exists("/system/fonts/mmsd.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 372;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 382;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/mmsd.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 373;BA.debugLine="ml.chmod(\"/system/fonts/mmsd.ttf\",644)";
+ //BA.debugLineNum = 383;BA.debugLine="ml.chmod(\"/system/fonts/mmsd.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/mmsd.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 377;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Regular.ttf\")";
+ //BA.debugLineNum = 387;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Regular.ttf\")";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Regular.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 378;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 388;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Roboto-Regular.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 379;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Regular.ttf\",644";
+ //BA.debugLineNum = 389;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Regular.ttf\",644";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 382;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Light.ttf\") =";
+ //BA.debugLineNum = 392;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Light.ttf\") =";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Light.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 383;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 393;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Roboto-Light.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 384;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Light.ttf\",644)";
+ //BA.debugLineNum = 394;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Light.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Light.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 387;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Bold.ttf\") =";
+ //BA.debugLineNum = 397;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Bold.ttf\") =";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Bold.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 388;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
+ //BA.debugLineNum = 398;BA.debugLine="ml.RootCmd(\"cp -r /sdcard/MyanmarHeart.ttf /sys";
 mostCurrent._ml.RootCmd("cp -r /sdcard/MyanmarHeart.ttf /system/fonts/Roboto-Bold.ttf","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 389;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Bold.ttf\",644)";
+ //BA.debugLineNum = 399;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Bold.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 392;BA.debugLine="ist.Enabled = True";
+ //BA.debugLineNum = 402;BA.debugLine="ist.Enabled = True";
 _ist.setEnabled(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 393;BA.debugLine="ti.Enabled = False";
+ //BA.debugLineNum = 403;BA.debugLine="ti.Enabled = False";
 _ti.setEnabled(anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 395;BA.debugLine="End Sub";
+ //BA.debugLineNum = 405;BA.debugLine="End Sub";
 return "";
 }
 public static String  _tr_tick() throws Exception{
- //BA.debugLineNum = 417;BA.debugLine="Sub tr_Tick";
- //BA.debugLineNum = 418;BA.debugLine="ml.RootCmd(\"mount -o rw,remount /system\",\"\",Null,";
+ //BA.debugLineNum = 427;BA.debugLine="Sub tr_Tick";
+ //BA.debugLineNum = 428;BA.debugLine="ml.RootCmd(\"mount -o rw,remount /system\",\"\",Null,";
 mostCurrent._ml.RootCmd("mount -o rw,remount /system","",(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),(java.lang.StringBuilder)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 421;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk.ttf.bak\") = Tr";
+ //BA.debugLineNum = 431;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk.ttf.bak\") = Tr";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 422;BA.debugLine="ml.rm(\"/system/fonts/Padauk.ttf\")";
+ //BA.debugLineNum = 432;BA.debugLine="ml.rm(\"/system/fonts/Padauk.ttf\")";
 mostCurrent._ml.rm("/system/fonts/Padauk.ttf");
- //BA.debugLineNum = 423;BA.debugLine="ml.mv(\"/system/fonts/Padauk.ttf.bak\",\"/system/fo";
+ //BA.debugLineNum = 433;BA.debugLine="ml.mv(\"/system/fonts/Padauk.ttf.bak\",\"/system/fo";
 mostCurrent._ml.mv("/system/fonts/Padauk.ttf.bak","/system/fonts/Padauk.ttf");
- //BA.debugLineNum = 424;BA.debugLine="ml.chmod(\"/system/fonts/Padauk.ttf\",644)";
+ //BA.debugLineNum = 434;BA.debugLine="ml.chmod(\"/system/fonts/Padauk.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Padauk.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 428;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-book.ttf.bak\")";
+ //BA.debugLineNum = 438;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-book.ttf.bak\")";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk-book.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 429;BA.debugLine="ml.rm(\"/system/fonts/Padauk-book.ttf\")";
+ //BA.debugLineNum = 439;BA.debugLine="ml.rm(\"/system/fonts/Padauk-book.ttf\")";
 mostCurrent._ml.rm("/system/fonts/Padauk-book.ttf");
- //BA.debugLineNum = 430;BA.debugLine="ml.mv(\"/system/fonts/Padauk-book.ttf.bak\",\"/syst";
+ //BA.debugLineNum = 440;BA.debugLine="ml.mv(\"/system/fonts/Padauk-book.ttf.bak\",\"/syst";
 mostCurrent._ml.mv("/system/fonts/Padauk-book.ttf.bak","/system/fonts/Padauk-book.ttf");
- //BA.debugLineNum = 431;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-book.ttf\",644)";
+ //BA.debugLineNum = 441;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-book.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Padauk-book.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 435;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-bookbold.ttf.b";
+ //BA.debugLineNum = 445;BA.debugLine="If ml.Exists(\"/system/fonts/Padauk-bookbold.ttf.b";
 if (mostCurrent._ml.Exists("/system/fonts/Padauk-bookbold.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 436;BA.debugLine="ml.rm(\"/system/fonts/Padauk-bookbold.ttf\")";
+ //BA.debugLineNum = 446;BA.debugLine="ml.rm(\"/system/fonts/Padauk-bookbold.ttf\")";
 mostCurrent._ml.rm("/system/fonts/Padauk-bookbold.ttf");
- //BA.debugLineNum = 437;BA.debugLine="ml.mv(\"/system/fonts/Padauk-bookbold.ttf.bak\",\"/";
+ //BA.debugLineNum = 447;BA.debugLine="ml.mv(\"/system/fonts/Padauk-bookbold.ttf.bak\",\"/";
 mostCurrent._ml.mv("/system/fonts/Padauk-bookbold.ttf.bak","/system/fonts/Padauk-bookbold.ttf");
- //BA.debugLineNum = 438;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-bookbold.ttf\",644";
+ //BA.debugLineNum = 448;BA.debugLine="ml.chmod(\"/system/fonts/Padauk-bookbold.ttf\",644";
 mostCurrent._ml.chmod("/system/fonts/Padauk-bookbold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 442;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Bold.";
+ //BA.debugLineNum = 452;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Bold.";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmar-Bold.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 443;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmar-Bold.ttf\")";
+ //BA.debugLineNum = 453;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmar-Bold.ttf\")";
 mostCurrent._ml.rm("/system/fonts/NotoSansMyanmar-Bold.ttf");
- //BA.debugLineNum = 444;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Bold.ttf.ba";
+ //BA.debugLineNum = 454;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Bold.ttf.ba";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmar-Bold.ttf.bak","/system/fonts/NotoSansMyanmar-Bold.ttf");
- //BA.debugLineNum = 445;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Bold.ttf";
+ //BA.debugLineNum = 455;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Bold.ttf";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmar-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 449;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Regul";
+ //BA.debugLineNum = 459;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmar-Regul";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmar-Regular.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 450;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmar-Regular.ttf";
+ //BA.debugLineNum = 460;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmar-Regular.ttf";
 mostCurrent._ml.rm("/system/fonts/NotoSansMyanmar-Regular.ttf");
- //BA.debugLineNum = 451;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Regular.ttf";
+ //BA.debugLineNum = 461;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmar-Regular.ttf";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmar-Regular.ttf.bak","/system/fonts/NotoSansMyanmar-Regular.ttf");
- //BA.debugLineNum = 452;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Regular.";
+ //BA.debugLineNum = 462;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmar-Regular.";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmar-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 456;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Bol";
+ //BA.debugLineNum = 466;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Bol";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarUI-Bold.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 457;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarUI-Bold.ttf\"";
+ //BA.debugLineNum = 467;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarUI-Bold.ttf\"";
 mostCurrent._ml.rm("/system/fonts/NotoSansMyanmarUI-Bold.ttf");
- //BA.debugLineNum = 458;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Bold.ttf.";
+ //BA.debugLineNum = 468;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Bold.ttf.";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarUI-Bold.ttf.bak","/system/fonts/NotoSansMyanmarUI-Bold.ttf");
- //BA.debugLineNum = 459;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Bold.t";
+ //BA.debugLineNum = 469;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Bold.t";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarUI-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 463;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Reg";
+ //BA.debugLineNum = 473;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarUI-Reg";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarUI-Regular.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 464;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarUI-Regular.t";
+ //BA.debugLineNum = 474;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarUI-Regular.t";
 mostCurrent._ml.rm("/system/fonts/NotoSansMyanmarUI-Regular.ttf");
- //BA.debugLineNum = 465;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Regular.t";
+ //BA.debugLineNum = 475;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarUI-Regular.t";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarUI-Regular.ttf.bak","/system/fonts/NotoSansMyanmarUI-Regular.ttf");
- //BA.debugLineNum = 466;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Regula";
+ //BA.debugLineNum = 476;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarUI-Regula";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarUI-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 470;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgyi";
+ //BA.debugLineNum = 480;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgyi";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 471;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarZawgyi-Bold.";
+ //BA.debugLineNum = 481;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarZawgyi-Bold.";
 mostCurrent._ml.rm("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf");
- //BA.debugLineNum = 472;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Bold.";
+ //BA.debugLineNum = 482;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Bold.";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf.bak","/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf");
- //BA.debugLineNum = 473;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-Bo";
+ //BA.debugLineNum = 483;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-Bo";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarZawgyi-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 477;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgyi";
+ //BA.debugLineNum = 487;BA.debugLine="If ml.Exists(\"/system/fonts/NotoSansMyanmarZawgyi";
 if (mostCurrent._ml.Exists("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 478;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarZawgyi-Regul";
+ //BA.debugLineNum = 488;BA.debugLine="ml.rm(\"/system/fonts/NotoSansMyanmarZawgyi-Regul";
 mostCurrent._ml.rm("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf");
- //BA.debugLineNum = 479;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Regul";
+ //BA.debugLineNum = 489;BA.debugLine="ml.mv(\"/system/fonts/NotoSansMyanmarZawgyi-Regul";
 mostCurrent._ml.mv("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf.bak","/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf");
- //BA.debugLineNum = 480;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-Re";
+ //BA.debugLineNum = 490;BA.debugLine="ml.chmod(\"/system/fonts/NotoSansMyanmarZawgyi-Re";
 mostCurrent._ml.chmod("/system/fonts/NotoSansMyanmarZawgyi-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 484;BA.debugLine="If ml.Exists(\"/system/fonts/SamsungMyanmar.ttf.ba";
+ //BA.debugLineNum = 494;BA.debugLine="If ml.Exists(\"/system/fonts/SamsungMyanmar.ttf.ba";
 if (mostCurrent._ml.Exists("/system/fonts/SamsungMyanmar.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 485;BA.debugLine="ml.rm(\"/system/fonts/SamsungMyanmar.ttf\")";
+ //BA.debugLineNum = 495;BA.debugLine="ml.rm(\"/system/fonts/SamsungMyanmar.ttf\")";
 mostCurrent._ml.rm("/system/fonts/SamsungMyanmar.ttf");
- //BA.debugLineNum = 486;BA.debugLine="ml.mv(\"/system/fonts/SamsungMyanmar.ttf.bak\",\"/s";
+ //BA.debugLineNum = 496;BA.debugLine="ml.mv(\"/system/fonts/SamsungMyanmar.ttf.bak\",\"/s";
 mostCurrent._ml.mv("/system/fonts/SamsungMyanmar.ttf.bak","/system/fonts/SamsungMyanmar.ttf");
- //BA.debugLineNum = 487;BA.debugLine="ml.chmod(\"/system/fonts/SamsungMyanmar.ttf\",644)";
+ //BA.debugLineNum = 497;BA.debugLine="ml.chmod(\"/system/fonts/SamsungMyanmar.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/SamsungMyanmar.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 491;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne.ttf.bak\") =";
+ //BA.debugLineNum = 501;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne.ttf.bak\") =";
 if (mostCurrent._ml.Exists("/system/fonts/ZawgyiOne.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 492;BA.debugLine="ml.rm(\"/system/fonts/ZawgyiOne.ttf\")";
+ //BA.debugLineNum = 502;BA.debugLine="ml.rm(\"/system/fonts/ZawgyiOne.ttf\")";
 mostCurrent._ml.rm("/system/fonts/ZawgyiOne.ttf");
- //BA.debugLineNum = 493;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne.ttf.bak\",\"/system";
+ //BA.debugLineNum = 503;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne.ttf.bak\",\"/system";
 mostCurrent._ml.mv("/system/fonts/ZawgyiOne.ttf.bak","/system/fonts/ZawgyiOne.ttf");
- //BA.debugLineNum = 494;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne.ttf\",644)";
+ //BA.debugLineNum = 504;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/ZawgyiOne.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 498;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne2008.ttf.bak";
+ //BA.debugLineNum = 508;BA.debugLine="If ml.Exists(\"/system/fonts/ZawgyiOne2008.ttf.bak";
 if (mostCurrent._ml.Exists("/system/fonts/ZawgyiOne2008.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 499;BA.debugLine="ml.rm(\"/system/fonts/ZawgyiOne2008.ttf\")";
+ //BA.debugLineNum = 509;BA.debugLine="ml.rm(\"/system/fonts/ZawgyiOne2008.ttf\")";
 mostCurrent._ml.rm("/system/fonts/ZawgyiOne2008.ttf");
- //BA.debugLineNum = 500;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne2008.ttf.bak\",\"/sy";
+ //BA.debugLineNum = 510;BA.debugLine="ml.mv(\"/system/fonts/ZawgyiOne2008.ttf.bak\",\"/sy";
 mostCurrent._ml.mv("/system/fonts/ZawgyiOne2008.ttf.bak","/system/fonts/ZawgyiOne2008.ttf");
- //BA.debugLineNum = 501;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne2008.ttf\",644)";
+ //BA.debugLineNum = 511;BA.debugLine="ml.chmod(\"/system/fonts/ZawgyiOne2008.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/ZawgyiOne2008.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 505;BA.debugLine="If ml.Exists(\"/system/fonts/mmsd.ttf.bak\") = True";
+ //BA.debugLineNum = 515;BA.debugLine="If ml.Exists(\"/system/fonts/mmsd.ttf.bak\") = True";
 if (mostCurrent._ml.Exists("/system/fonts/mmsd.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 506;BA.debugLine="ml.rm(\"/system/fonts/mmsd.ttf\")";
+ //BA.debugLineNum = 516;BA.debugLine="ml.rm(\"/system/fonts/mmsd.ttf\")";
 mostCurrent._ml.rm("/system/fonts/mmsd.ttf");
- //BA.debugLineNum = 507;BA.debugLine="ml.mv(\"/system/fonts/mmsd.ttf.bak\",\"/system/font";
+ //BA.debugLineNum = 517;BA.debugLine="ml.mv(\"/system/fonts/mmsd.ttf.bak\",\"/system/font";
 mostCurrent._ml.mv("/system/fonts/mmsd.ttf.bak","/system/fonts/mmsd.ttf");
- //BA.debugLineNum = 508;BA.debugLine="ml.chmod(\"/system/fonts/mmsd.ttf\",644)";
+ //BA.debugLineNum = 518;BA.debugLine="ml.chmod(\"/system/fonts/mmsd.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/mmsd.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 512;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Bold.ttf.bak\")";
+ //BA.debugLineNum = 522;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Bold.ttf.bak\")";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Bold.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 513;BA.debugLine="ml.rm(\"/system/fonts/Roboto-Bold.ttf\")";
+ //BA.debugLineNum = 523;BA.debugLine="ml.rm(\"/system/fonts/Roboto-Bold.ttf\")";
 mostCurrent._ml.rm("/system/fonts/Roboto-Bold.ttf");
- //BA.debugLineNum = 514;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Bold.ttf.bak\",\"/syst";
+ //BA.debugLineNum = 524;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Bold.ttf.bak\",\"/syst";
 mostCurrent._ml.mv("/system/fonts/Roboto-Bold.ttf.bak","/system/fonts/Roboto-Bold.ttf");
- //BA.debugLineNum = 515;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Bold.ttf\",644)";
+ //BA.debugLineNum = 525;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Bold.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Bold.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 518;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Light.ttf.bak\"";
+ //BA.debugLineNum = 528;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Light.ttf.bak\"";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Light.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 519;BA.debugLine="ml.rm(\"/system/fonts/Roboto-Light.ttf\")";
+ //BA.debugLineNum = 529;BA.debugLine="ml.rm(\"/system/fonts/Roboto-Light.ttf\")";
 mostCurrent._ml.rm("/system/fonts/Roboto-Light.ttf");
- //BA.debugLineNum = 520;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Light.ttf.bak\",\"/sys";
+ //BA.debugLineNum = 530;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Light.ttf.bak\",\"/sys";
 mostCurrent._ml.mv("/system/fonts/Roboto-Light.ttf.bak","/system/fonts/Roboto-Light.ttf");
- //BA.debugLineNum = 521;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Light.ttf\",644)";
+ //BA.debugLineNum = 531;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Light.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Light.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 524;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Regular.ttf.ba";
+ //BA.debugLineNum = 534;BA.debugLine="If ml.Exists(\"/system/fonts/Roboto-Regular.ttf.ba";
 if (mostCurrent._ml.Exists("/system/fonts/Roboto-Regular.ttf.bak")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 525;BA.debugLine="ml.rm(\"/system/fonts/Roboto-Regular.ttf\")";
+ //BA.debugLineNum = 535;BA.debugLine="ml.rm(\"/system/fonts/Roboto-Regular.ttf\")";
 mostCurrent._ml.rm("/system/fonts/Roboto-Regular.ttf");
- //BA.debugLineNum = 526;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Regular.ttf.bak\",\"/s";
+ //BA.debugLineNum = 536;BA.debugLine="ml.mv(\"/system/fonts/Roboto-Regular.ttf.bak\",\"/s";
 mostCurrent._ml.mv("/system/fonts/Roboto-Regular.ttf.bak","/system/fonts/Roboto-Regular.ttf");
- //BA.debugLineNum = 527;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Regular.ttf\",644)";
+ //BA.debugLineNum = 537;BA.debugLine="ml.chmod(\"/system/fonts/Roboto-Regular.ttf\",644)";
 mostCurrent._ml.chmod("/system/fonts/Roboto-Regular.ttf",BA.NumberToString(644));
  };
- //BA.debugLineNum = 530;BA.debugLine="If ml.Exists(\"/system/Ht3tzN4ing.ttf\") = True The";
+ //BA.debugLineNum = 540;BA.debugLine="If ml.Exists(\"/system/Ht3tzN4ing.ttf\") = True The";
 if (mostCurrent._ml.Exists("/system/Ht3tzN4ing.ttf")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 531;BA.debugLine="ml.rm(\"/system/Ht3tzN4ing.ttf\")";
+ //BA.debugLineNum = 541;BA.debugLine="ml.rm(\"/system/Ht3tzN4ing.ttf\")";
 mostCurrent._ml.rm("/system/Ht3tzN4ing.ttf");
  };
- //BA.debugLineNum = 534;BA.debugLine="rst.Enabled = True";
+ //BA.debugLineNum = 544;BA.debugLine="rst.Enabled = True";
 _rst.setEnabled(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 535;BA.debugLine="tr.Enabled = False";
+ //BA.debugLineNum = 545;BA.debugLine="tr.Enabled = False";
 _tr.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 536;BA.debugLine="End Sub";
+ //BA.debugLineNum = 546;BA.debugLine="End Sub";
 return "";
 }
 }

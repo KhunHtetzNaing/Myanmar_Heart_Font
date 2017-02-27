@@ -32,7 +32,6 @@ public anywheresoftware.b4a.objects.ListViewWrapper _mlistview = null;
 public anywheresoftware.b4a.objects.AnimationWrapper _minanimation = null;
 public anywheresoftware.b4a.objects.AnimationWrapper _moutanimation = null;
 public anywheresoftware.b4a.objects.drawable.ColorDrawable _lvbg = null;
-public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public com.htetznaing.mmheartfont2.main _main = null;
 public com.htetznaing.mmheartfont2.main2 _main2 = null;
 public com.htetznaing.mmheartfont2.samsung _samsung = null;

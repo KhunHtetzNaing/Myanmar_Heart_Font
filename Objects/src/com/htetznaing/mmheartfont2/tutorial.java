@@ -328,7 +328,6 @@ public uk.co.martinpearman.b4a.webviewsettings.WebViewSettings _wv = null;
 public anywheresoftware.b4a.objects.LabelWrapper _tlb = null;
 public anywheresoftware.b4a.objects.LabelWrapper _lb = null;
 public anywheresoftware.b4a.admobwrapper.AdViewWrapper _banner = null;
-public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public com.htetznaing.mmheartfont2.main _main = null;
 public com.htetznaing.mmheartfont2.main2 _main2 = null;
 public com.htetznaing.mmheartfont2.samsung _samsung = null;
@@ -347,13 +346,14 @@ public static void initializeProcessGlobals() {
             }
 }
 public static String  _activity_create(boolean _firsttime) throws Exception{
+int _height = 0;
  //BA.debugLineNum = 20;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
  //BA.debugLineNum = 21;BA.debugLine="wb.Initialize(\"wb\")";
 mostCurrent._wb.Initialize(mostCurrent.activityBA,"wb");
  //BA.debugLineNum = 22;BA.debugLine="Activity.AddView(wb,0%x,55dip,100%x,100%y)";
 mostCurrent._activity.AddView((android.view.View)(mostCurrent._wb.getObject()),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (0),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (55)),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA));
- //BA.debugLineNum = 23;BA.debugLine="wb.LoadUrl(\"http://www.htetznaing.com/myanmar-fon";
-mostCurrent._wb.LoadUrl("http://www.htetznaing.com/myanmar-font-styles/");
+ //BA.debugLineNum = 23;BA.debugLine="wb.LoadUrl(\"http://www.htetznaing.com/2017/02/Mya";
+mostCurrent._wb.LoadUrl("http://www.htetznaing.com/2017/02/Myanmar-Font-Styles.html");
  //BA.debugLineNum = 24;BA.debugLine="wv.setDisplayZoomControls(wb , False)";
 mostCurrent._wv.setDisplayZoomControls((android.webkit.WebView)(mostCurrent._wb.getObject()),anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 26;BA.debugLine="tlb.Initialize(\"tlb\")";
@@ -372,29 +372,44 @@ mostCurrent._tlb.setTypeface(anywheresoftware.b4a.keywords.Common.Typeface.DEFAU
 mostCurrent._tlb.setGravity(anywheresoftware.b4a.keywords.Common.Gravity.CENTER);
  //BA.debugLineNum = 34;BA.debugLine="Activity.AddView(tlb,0%x,0%y,100%x,55dip)";
 mostCurrent._activity.AddView((android.view.View)(mostCurrent._tlb.getObject()),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (0),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (0),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (55)));
- //BA.debugLineNum = 36;BA.debugLine="Banner.Initialize(\"Banner\",\"ca-app-pub-4173348573";
-mostCurrent._banner.Initialize(mostCurrent.activityBA,"Banner","ca-app-pub-4173348573252986/1553645756");
- //BA.debugLineNum = 37;BA.debugLine="Banner.LoadAd";
+ //BA.debugLineNum = 36;BA.debugLine="Banner.Initialize2(\"Banner\",\"ca-app-pub-417334857";
+mostCurrent._banner.Initialize2(mostCurrent.activityBA,"Banner","ca-app-pub-4173348573252986/1553645756",mostCurrent._banner.SIZE_SMART_BANNER);
+ //BA.debugLineNum = 37;BA.debugLine="Dim height As Int";
+_height = 0;
+ //BA.debugLineNum = 38;BA.debugLine="If GetDeviceLayoutValues.ApproximateScreenSize <";
+if (anywheresoftware.b4a.keywords.Common.GetDeviceLayoutValues(mostCurrent.activityBA).getApproximateScreenSize()<6) { 
+ //BA.debugLineNum = 40;BA.debugLine="If 100%x > 100%y Then height = 32dip Else height";
+if (anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA)>anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)) { 
+_height = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32));}
+else {
+_height = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50));};
+ }else {
+ //BA.debugLineNum = 43;BA.debugLine="height = 90dip";
+_height = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (90));
+ };
+ //BA.debugLineNum = 45;BA.debugLine="Activity.AddView(Banner, 0dip, 100%y - height, 10";
+mostCurrent._activity.AddView((android.view.View)(mostCurrent._banner.getObject()),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (0)),(int) (anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)-_height),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),_height);
+ //BA.debugLineNum = 46;BA.debugLine="Banner.LoadAd";
 mostCurrent._banner.LoadAd();
- //BA.debugLineNum = 38;BA.debugLine="Activity.AddView(Banner,0%x,100%y - 50dip,100%x,5";
-mostCurrent._activity.AddView((android.view.View)(mostCurrent._banner.getObject()),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (0),mostCurrent.activityBA),(int) (anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)-anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50))),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50)));
- //BA.debugLineNum = 40;BA.debugLine="lb.Initialize(\"lb\")";
+ //BA.debugLineNum = 47;BA.debugLine="Log(Banner)";
+anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(mostCurrent._banner));
+ //BA.debugLineNum = 49;BA.debugLine="lb.Initialize(\"lb\")";
 mostCurrent._lb.Initialize(mostCurrent.activityBA,"lb");
- //BA.debugLineNum = 41;BA.debugLine="lb.SetBackgroundImage(LoadBitmap(File.DirAssets,\"";
+ //BA.debugLineNum = 50;BA.debugLine="lb.SetBackgroundImage(LoadBitmap(File.DirAssets,\"";
 mostCurrent._lb.SetBackgroundImage((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmap(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"open.png").getObject()));
- //BA.debugLineNum = 42;BA.debugLine="Activity.AddView(lb,100%x - 40dip,12.5dip,30dip,3";
+ //BA.debugLineNum = 51;BA.debugLine="Activity.AddView(lb,100%x - 40dip,12.5dip,30dip,3";
 mostCurrent._activity.AddView((android.view.View)(mostCurrent._lb.getObject()),(int) (anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA)-anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (40))),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (12.5)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (30)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (30)));
- //BA.debugLineNum = 43;BA.debugLine="End Sub";
+ //BA.debugLineNum = 52;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 53;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 55;BA.debugLine="End Sub";
+ //BA.debugLineNum = 62;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 64;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 49;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 51;BA.debugLine="End Sub";
+ //BA.debugLineNum = 58;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 60;BA.debugLine="End Sub";
 return "";
 }
 public static String  _globals() throws Exception{
@@ -413,12 +428,12 @@ return "";
 }
 public static String  _lb_click() throws Exception{
 anywheresoftware.b4a.phone.Phone.PhoneIntents _p = null;
- //BA.debugLineNum = 45;BA.debugLine="Sub lb_Click";
- //BA.debugLineNum = 46;BA.debugLine="Dim p As PhoneIntents";
+ //BA.debugLineNum = 54;BA.debugLine="Sub lb_Click";
+ //BA.debugLineNum = 55;BA.debugLine="Dim p As PhoneIntents";
 _p = new anywheresoftware.b4a.phone.Phone.PhoneIntents();
- //BA.debugLineNum = 47;BA.debugLine="StartActivity(p.OpenBrowser(\"http://www.htetznain";
-anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(_p.OpenBrowser("http://www.htetznaing.com/myanmar-font-styles/")));
- //BA.debugLineNum = 48;BA.debugLine="End Sub";
+ //BA.debugLineNum = 56;BA.debugLine="StartActivity(p.OpenBrowser(\"http://www.htetznain";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(_p.OpenBrowser("http://www.htetznaing.com/2017/02/Myanmar-Font-Styles.html")));
+ //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{

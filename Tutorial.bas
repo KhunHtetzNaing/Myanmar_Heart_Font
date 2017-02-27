@@ -25,7 +25,7 @@ End Sub
 Sub Activity_Create(FirstTime As Boolean)
 	wb.Initialize("wb")
 	Activity.AddView(wb,0%x,55dip,100%x,100%y)
-	wb.LoadUrl("http://www.htetznaing.com/myanmar-font-styles/")
+	wb.LoadUrl("http://www.htetznaing.com/2017/02/Myanmar-Font-Styles.html")
 	wv.setDisplayZoomControls(wb , False)
 	
 	tlb.Initialize("tlb")
@@ -38,10 +38,19 @@ Sub Activity_Create(FirstTime As Boolean)
 	tlb.Gravity = Gravity.CENTER
 	Activity.AddView(tlb,0%x,0%y,100%x,55dip)
 	
-	Banner.Initialize("Banner","ca-app-pub-4173348573252986/1553645756")
+	Banner.Initialize2("Banner","ca-app-pub-4173348573252986/1553645756",Banner.SIZE_SMART_BANNER)
+	Dim height As Int
+	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+		'phones
+		If 100%x > 100%y Then height = 32dip Else height = 50dip
+	Else
+		'tablets
+		height = 90dip
+	End If
+	Activity.AddView(Banner, 0dip, 100%y - height, 100%x, height)
 	Banner.LoadAd
-	Activity.AddView(Banner,0%x,100%y - 50dip,100%x,50dip)
-	
+	Log(Banner)
+
 	lb.Initialize("lb")
 	lb.SetBackgroundImage(LoadBitmap(File.DirAssets,"open.png"))
 	Activity.AddView(lb,100%x - 40dip,12.5dip,30dip,30dip)
@@ -49,7 +58,7 @@ End Sub
 
 Sub lb_Click
 	Dim p As PhoneIntents
-	StartActivity(p.OpenBrowser("http://www.htetznaing.com/myanmar-font-styles/"))
+	StartActivity(p.OpenBrowser("http://www.htetznaing.com/2017/02/Myanmar-Font-Styles.html"))
 End Sub
 Sub Activity_Resume
 

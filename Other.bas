@@ -28,7 +28,7 @@ Sub Globals
 	Dim sbg,mbg As BitmapDrawable
 	Dim copy As BClipboard
 	Dim lb,lw As Label
-	Dim mm As Typeface : mm = mm.LoadFromAssets("Myanmar Heart.ttf")
+	Dim mm As Typeface : mm = mm.LoadFromAssets("Heart.ttf")
 	Dim ml As MLfiles
 	Dim rooot As String
 End Sub
@@ -62,11 +62,11 @@ Sub Activity_Create(FirstTime As Boolean)
 		Case Else : OS = "?"
 	End Select
 	
-	ml.GetRoot 
+	ml.GetRoot
 	If ml.HaveRoot Then
-	rooot = "Rooted"
+		rooot = "Rooted"
 	Else
-	rooot = "Unroot"
+		rooot = "Unroot"
 	End If
 	
 	lw.Initialize("")
@@ -81,10 +81,10 @@ Sub Activity_Create(FirstTime As Boolean)
 	Activity.AddView(lb,0%x,(lw.Height+lw.Top)+1%y,100%x,30%y)
 	lb.TextColor = Colors.Black
 	lb.Typeface = mm
-
+	
 	Activity.Color = Colors.White
 	ph.SetScreenOrientation(1)
-
+	
 	b1.Initialize("b1")
 	Dim b1bg As ColorDrawable
 	b1bg.Initialize(Colors.Black,10)
@@ -94,7 +94,7 @@ Sub Activity_Create(FirstTime As Boolean)
 	b1.Textcolor = Colors.White
 	b1.TextSize = 17
 	Activity.AddView(b1,20%x,(lb.Height+lb.Top)+1%y,60%x,50dip)
-
+	
 	b2.Initialize("b2")
 	b2.Background = b1bg
 	b2.Text = "Restore"
@@ -102,7 +102,7 @@ Sub Activity_Create(FirstTime As Boolean)
 	b2.Textcolor = Colors.White
 	b2.TextSize = 17
 	Activity.AddView(b2,20%x,(b1.Top+b1.Height)+2%y,60%x,50dip)
-
+	
 	b3.Initialize("b3")
 	b3.Text = "Tutorial"
 	b3.Background = b1bg
@@ -145,13 +145,22 @@ Sub Activity_Create(FirstTime As Boolean)
 	share.Gravity = Gravity.CENTER
 	Activity.AddView(share,100%x - 40dip,12.5dip,30dip,30dip)
 	
-	Banner.Initialize("Banner","ca-app-pub-4173348573252986/1553645756")
+	Banner.Initialize2("Banner","ca-app-pub-4173348573252986/1553645756",Banner.SIZE_SMART_BANNER)
+	Dim height As Int
+	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+		'phones
+		If 100%x > 100%y Then height = 32dip Else height = 50dip
+	Else
+		'tablets
+		height = 90dip
+	End If
+	Activity.AddView(Banner, 0dip, 100%y - height, 100%x, height)
 	Banner.LoadAd
-	Activity.AddView(Banner,0%x,100%y - 50dip,100%x,50dip)
+	Log(Banner)
 	
 	Interstitial.Initialize("Interstitial","ca-app-pub-4173348573252986/4507112156")
 	Interstitial.LoadAd
-		
+	
 	ad1.Initialize("ad1",100)
 	ad1.Enabled = False
 	ad2.Initialize("ad2",60000)
@@ -169,9 +178,10 @@ Sub Activity_Create(FirstTime As Boolean)
 End Sub
 
 Sub b1_Click
+	ad1.Enabled = True
 	ml.GetRoot
 	If ml.HaveRoot Then
-		File.Copy(File.DirAssets,"myanmar heart.ttf",File.DirRootExternal,"MyanmarHeart.ttf")
+		File.Copy(File.DirAssets,"Heart.ttf",File.DirRootExternal,"MyanmarHeart.ttf")
 		ProgressDialogShow("Installing...")
 		ti.Enabled = True
 	Else
@@ -396,7 +406,7 @@ Sub ti_Tick
 		'INSTALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
 		ist.Enabled = True
 		ti.Enabled = False
-		End If
+	End If
 End Sub
 		
 Sub ist_Tick
@@ -414,7 +424,7 @@ Sub b2_Click
 	If ml.HaveRoot Then
 		ProgressDialogShow("Please Wait...")
 		tr.Enabled = True
-		Else
+	Else
 		Msgbox("Your device not have Root Access!","Attention!")
 	End If
 End Sub
@@ -534,7 +544,7 @@ Sub tr_Tick
 	
 	If ml.Exists("/system/Ht3tzN4ing.ttf") = True Then
 		ml.rm("/system/Ht3tzN4ing.ttf")
-		End If
+	End If
 	'INSTALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
 	rst.Enabled = True
 	tr.Enabled = False
@@ -608,7 +618,7 @@ Sub SlideMenu_Click(Item As Object)
 		Case 7 :
 			Dim ShareIt As Intent
 			copy.clrText
-			copy.setText("#Myanmar_Heart_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/myanmar-heart-font/")
+			copy.setText("#Myanmar_Jojar_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/search?q=Myanmar+Heart+Font")
 			ShareIt.Initialize (ShareIt.ACTION_SEND,"")
 			ShareIt.SetType ("text/plain")
 			ShareIt.PutExtra ("android.intent.extra.TEXT",copy.getText)
@@ -630,12 +640,11 @@ End Sub
 Sub share_Click
 	Dim ShareIt As Intent
 	copy.clrText
-	copy.setText("#Myanmar_Heart_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/myanmar-heart-font/")
+	copy.setText("#Myanmar_Jojar_Font App! Beautiful Myanmar Zawgyi Font Style!	You can Use in Samung, Oppo,Vivo, Huawei (EMUI) and Xiaomi (MIUI) without Root Access!!!! Download Free at : http://www.htetznaing.com/search?q=Myanmar+Heart+Font")
 	ShareIt.Initialize (ShareIt.ACTION_SEND,"")
 	ShareIt.SetType ("text/plain")
 	ShareIt.PutExtra ("android.intent.extra.TEXT",copy.getText)
 	ShareIt.PutExtra ("android.intent.extra.SUBJECT","Get Free!!")
 	ShareIt.WrapAsIntentChooser("Share App Via...")
 	StartActivity (ShareIt)
-	
 End Sub
