@@ -416,8 +416,8 @@ mostCurrent._lstone.getSingleLineLayout().setItemHeight(anywheresoftware.b4a.key
 mostCurrent._lstone.AddSingleLine2("App Name : Myanmar Heart Font",(Object)(6));
  //BA.debugLineNum = 62;BA.debugLine="lstOne.AddSingleLine2 (\"Font Developer : Unknown";
 mostCurrent._lstone.AddSingleLine2("Font Developer : Unknown   ",(Object)(2));
- //BA.debugLineNum = 63;BA.debugLine="lstOne.AddSingleLine2(\"Version : 1.2\",7)";
-mostCurrent._lstone.AddSingleLine2("Version : 1.2",(Object)(7));
+ //BA.debugLineNum = 63;BA.debugLine="lstOne.AddSingleLine2(\"Version : 1.3\",7)";
+mostCurrent._lstone.AddSingleLine2("Version : 1.3",(Object)(7));
  //BA.debugLineNum = 64;BA.debugLine="lstOne.AddSingleLine2 (\"Developed By : Khun Htetz";
 mostCurrent._lstone.AddSingleLine2("Developed By : Khun Htetz Naing    ",(Object)(1));
  //BA.debugLineNum = 65;BA.debugLine="lstOne.AddSingleLine2 (\"Website : www.HtetzNaing.";
