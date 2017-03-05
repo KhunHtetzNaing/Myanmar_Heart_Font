@@ -47,8 +47,8 @@ Library10=abzipunzip
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Myanmar Heart Font
-	#VersionCode: 5
-	#VersionName: 1.3
+	#VersionCode: 6
+	#VersionName: 1.4
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
